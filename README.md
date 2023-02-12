@@ -1,11 +1,13 @@
-# Boilerplate
+# Kiz Platform SDK
 
-[![GitHub](https://img.shields.io/github/license/vhidvz/vscode-typescript-library-boilerplate?style=flat)](https://vhidvz.github.io/vscode-typescript-library-boilerplate/)
-[![Coverage](https://raw.githubusercontent.com/vhidvz/vscode-typescript-library-boilerplate/main/coverage-badge.svg)](https://htmlpreview.github.io/?https://github.com/vhidvz/vscode-typescript-library-boilerplate/blob/main/docs/coverage/lcov-report/index.html)
-[![Build, Test and Publish to NPM Package Registry](https://github.com/vhidvz/vscode-typescript-library-boilerplate/actions/workflows/npm-ci.yml/badge.svg)](https://github.com/vhidvz/vscode-typescript-library-boilerplate/actions/workflows/npm-ci.yml)
-
-VS-Code TypeScript library boilerplate with prettier, eslint, jest and the TypeDoc.
-
-## Features
-
-    - (CI Support) Automatic publish to npm package registry by github actions.
+[![npm](https://img.shields.io/npm/v/kiz-sdk)](https://www.npmjs.com/package/kiz-sdk)
+[![Coverage](https://raw.githubusercontent.com/RahkarSanat/kiz-sdk-js/main/coverage-badge.svg)](https://htmlpreview.github.io/?https://github.com/RahkarSanat/kiz-sdk-js/blob/main/docs/coverage/lcov-report/index.html)
+![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/RahkarSanat/kiz-sdk-js)
+![npm](https://img.shields.io/npm/dm/kiz-sdk)
+![node-current](https://img.shields.io/node/v/kiz-sdk)
+[![GitHub](https://img.shields.io/github/license/RahkarSanat/kiz-sdk-js?style=flat)](https://rahkarsanat.github.io/kiz-sdk/)
+[![semantic-release: angular](https://img.shields.io/badge/semantic--release-nodejs-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![Gitter](https://badges.gitter.im/npm-kiz-sdk/community.svg)](https://gitter.im/npm-kiz-sdk/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![documentation](https://img.shields.io/badge/documentation-click_to_read-c27cf4)](https://rahkarsanat.github.io/kiz-sdk/)
+[![Build, Test and Publish](https://github.com/RahkarSanat/kiz-sdk-js/actions/workflows/npm-ci.yml/badge.svg)](https://github.com/RahkarSanat/kiz-sdk-js/actions/workflows/npm-ci.yml)
