@@ -9,7 +9,7 @@ export class KizClient {
 
   constructor(protected readonly options?: CreateAxiosDefaults) {}
 
-  public get AuthService() {
+  public get authService() {
     return (this.auth = this.auth ?? new AuthService('/auth', this.options));
   }
 }
