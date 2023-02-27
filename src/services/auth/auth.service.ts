@@ -1,6 +1,6 @@
-import { AuthTokenReq, AuthTokenRes } from 'common/interfaces/auth.interface';
-import { BaseService } from '../core/base.core';
 import { AxiosRequestConfig, CreateAxiosDefaults } from 'axios';
+import { AuthTokenReq, AuthTokenRes } from '../../common';
+import { BaseService } from '../core';
 
 export class AuthService extends BaseService {
   constructor(protected readonly path: string, protected readonly options?: CreateAxiosDefaults) {
