@@ -16,7 +16,7 @@ export class AuthService extends BaseService {
   public async logout(config?: AxiosRequestConfig): Promise<AuthTokenRes> {
     const { data } = await this.post<AuthTokenRes>(`${this.path}/logout`, {
       headers: {
-        Authorization: `Bearer ${this.options?.headers?.common?.Authorization}`,
+        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
       },
       ...config,
     });
@@ -27,7 +27,7 @@ export class AuthService extends BaseService {
   public async decrypt(config?: AxiosRequestConfig): Promise<AuthTokenRes> {
     const { data } = await this.get<AuthTokenRes>(`${this.path}/decrypt`, {
       headers: {
-        Authorization: `Bearer ${this.options?.headers?.common?.Authorization}`,
+        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
       },
       ...config,
     });
