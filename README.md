@@ -11,3 +11,27 @@
 [![Gitter](https://badges.gitter.im/npm-kiz-sdk/community.svg)](https://gitter.im/npm-kiz-sdk/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![documentation](https://img.shields.io/badge/documentation-click_to_read-c27cf4)](https://rahkarsanat.github.io/kiz-sdk-js/)
 [![Build, Test and Publish](https://github.com/RahkarSanat/kiz-sdk-js/actions/workflows/npm-ci.yml/badge.svg)](https://github.com/RahkarSanat/kiz-sdk-js/actions/workflows/npm-ci.yml)
+
+---
+
+*config [from](https://superface.ai/blog/npm-publish-gh-actions-changelog)*
+
+## ChangeLogs
+
+    "As you commit changes to your project, write them down into the [Unreleased] section. Once you trigger a new release, unreleased changes are automatically moved under the new version heading."
+
+## Trigger new release
+
+You can find the “Run workflow” button in your GitHub repository under “Actions” → “Release package”.
+
+![Screenshot GitHub Actions run workflow](https://superface.ai/static_web/_next/image?url=%2Fimages%2Fblog%2Fposts%2F2022-06-github-run-workflow.png&w=3840&q=75)
+
+## Release type
+
+- patch
+- minor
+- major
+- prepatch
+- preminor
+- premajor
+- prerelease
