@@ -1,5 +1,5 @@
 {
-  "name": "@RahkarSanat/kiz-sdk",
+  "name": "@rahkarsanat/kiz-sdk",
   "version": "1.1.2",
   "description": "kiz platform sdk",
   "main": "dist/index.js",
