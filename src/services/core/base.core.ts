@@ -1,10 +1,11 @@
 import axios, { AxiosRequestConfig, CreateAxiosDefaults } from 'axios';
 import { CountFilter, Filter } from '../../common';
 import { RequestService } from './request.core';
+import { AXIOS_CLIENT } from 'common/infrastructure';
 
 export class BaseService extends RequestService {
-  constructor(protected readonly path: string, protected readonly options?: CreateAxiosDefaults) {
-    super({ client: axios.create(options) });
+  constructor(protected readonly path: string, protected readonly options: CreateAxiosDefaults) {
+    super(AXIOS_CLIENT(options));
   }
 
   protected async count<T>(filter?: CountFilter<T>, config?: AxiosRequestConfig): Promise<number> {

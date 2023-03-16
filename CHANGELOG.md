@@ -7,8 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
-## 1.2.0 - 2023-03-15
+### Added
 
-## 1.1.3 - 2023-03-15
+- Exception handling
+- `infrastructure` directory to keep SDK internal stuff (helpers, utils, enum etc)
+
 ### Fixed
-- Changelog
+
+- Require the `options` parameter

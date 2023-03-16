@@ -3,7 +3,7 @@ import { AuthTokenReq, AuthTokenRes } from '../../common';
 import { BaseService } from '../core';
 
 export class AuthService extends BaseService {
-  constructor(protected readonly path: string, protected readonly options?: CreateAxiosDefaults) {
+  constructor(protected readonly path: string, protected readonly options: CreateAxiosDefaults) {
     super(path, options);
   }
 
