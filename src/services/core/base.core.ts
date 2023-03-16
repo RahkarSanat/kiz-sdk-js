@@ -1,7 +1,7 @@
-import axios, { AxiosRequestConfig, CreateAxiosDefaults } from 'axios';
+import { AxiosRequestConfig, CreateAxiosDefaults } from 'axios';
 import { CountFilter, Filter } from '../../common';
 import { RequestService } from './request.core';
-import { AXIOS_CLIENT } from 'common/infrastructure';
+import { AXIOS_CLIENT } from '../../common/infrastructure';
 
 export class BaseService extends RequestService {
   constructor(protected readonly path: string, protected readonly options: CreateAxiosDefaults) {
