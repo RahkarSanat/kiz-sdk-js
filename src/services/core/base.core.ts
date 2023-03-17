@@ -4,7 +4,7 @@ import { RequestService } from './request.core';
 import { AXIOS_CLIENT } from '../../common/infrastructure';
 
 export class BaseService extends RequestService {
-  constructor(protected readonly path: string, protected readonly options: CreateAxiosDefaults) {
+  constructor(protected readonly path: string, protected readonly options?: CreateAxiosDefaults) {
     super(AXIOS_CLIENT(options));
   }
 
