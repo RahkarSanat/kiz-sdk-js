@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { Pagination, Projection, Query } from '../types';
 
 export interface Filter<T = any, K = T> {

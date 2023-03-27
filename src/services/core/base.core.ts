@@ -20,7 +20,7 @@ export class BaseService extends RequestService {
     return data;
   }
 
-  protected async create<T>(entity: T, config?: AxiosRequestConfig): Promise<T> {
+  protected async create<T, E = T>(entity: E, config?: AxiosRequestConfig): Promise<T> {
     const { data } = await this.post<T>(this.path, entity, {
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
