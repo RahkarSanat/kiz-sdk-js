@@ -1,10 +1,11 @@
 import { AxiosRequestConfig, CreateAxiosDefaults } from 'axios';
-import { AuthDecrypt, AuthTokenReq, AuthTokenRes } from '../../common';
-import { BaseService } from '../core';
+import { AuthDecrypt, AuthTokenReq, AuthTokenRes } from '../common';
+import { RequestService } from './core';
+import { AXIOS_CLIENT } from 'common/infrastructure';
 
-export class AuthService extends BaseService {
+export class AuthService extends RequestService {
   constructor(protected readonly path: string, protected readonly options?: CreateAxiosDefaults) {
-    super(path, options);
+    super(AXIOS_CLIENT(options));
   }
 
   public async token(auth: AuthTokenReq): Promise<AuthTokenRes> {
