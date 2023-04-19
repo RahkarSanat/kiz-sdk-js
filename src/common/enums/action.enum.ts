@@ -22,9 +22,9 @@ export enum Action {
   DeleteShared = 'delete:shared',
   RestoreShared = 'restore:shared',
 
-  CreateGroup = 'create:group',
-  ReadGroup = 'read:group',
-  UpdateGroup = 'update:group',
-  DeleteGroup = 'delete:group',
-  RestoreGroup = 'restore:group',
+  CreateClient = 'create:client',
+  ReadClient = 'read:client',
+  UpdateClient = 'update:client',
+  DeleteClient = 'delete:client',
+  RestoreClient = 'restore:client',
 }

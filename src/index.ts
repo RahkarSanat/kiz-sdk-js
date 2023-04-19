@@ -1,5 +1,5 @@
 import { CreateAxiosDefaults } from 'axios';
-import { AuthService, LocationsService, UsersService } from './services';
+import { AuthService, LocationsService, UsersService, GrantsService } from './services';
 
 export * from './services';
 export * from './common';
@@ -8,7 +8,7 @@ export class KizClient {
   protected auth?: AuthService;
   protected locations?: LocationsService;
   protected users?: UsersService;
-  // protected grants?: GrantsService;
+  protected grants?: GrantsService;
   // protected profiles?: ProfilesService;
   // protected drivers?: DriversService;
   // protected vehicles?: VehiclesService;
@@ -27,9 +27,9 @@ export class KizClient {
     return (this.users = this.users ?? new UsersService('/users', this.options));
   }
 
-  // public get grantsService() {
-  //   return (this.grants = this.grants ?? new GrantsService('/grants', this.options));
-  // }
+  public get grantsService() {
+    return (this.grants = this.grants ?? new GrantsService('/grants', this.options));
+  }
 
   // public get profilesService() {
   //   return (this.profiles = this.profiles ?? new ProfilesService('/profiles', this.options));
