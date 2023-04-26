@@ -21,7 +21,7 @@ jobs:
           node-version: '18.x'
 
       # Install dependencies (required by Run tests step)
-      - run: npm ci
+      - run: npm i
       - run: npm run build --if-present
 
       # Tests
