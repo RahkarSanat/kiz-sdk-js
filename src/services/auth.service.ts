@@ -1,8 +1,7 @@
 import { AxiosPromise, AxiosRequestConfig, CreateAxiosDefaults } from 'axios';
 import { AuthDecrypt, AuthTokenReq, AuthTokenRes } from '../common';
 import { RequestService } from './core';
-import { AXIOS_CLIENT } from 'common/infrastructure';
-
+import { AXIOS_CLIENT } from '../common/infrastructure';
 export class AuthService extends RequestService {
   constructor(protected readonly path: string, protected readonly options?: CreateAxiosDefaults) {
     super(AXIOS_CLIENT(options));
