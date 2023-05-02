@@ -1,4 +1,4 @@
-import { AxiosRequestConfig, CreateAxiosDefaults } from 'axios';
+import { AxiosPromise, AxiosRequestConfig, CreateAxiosDefaults } from 'axios';
 import { AuthDecrypt, AuthTokenReq, AuthTokenRes } from '../common';
 import { RequestService } from './core';
 import { AXIOS_CLIENT } from 'common/infrastructure';
@@ -8,31 +8,25 @@ export class AuthService extends RequestService {
     super(AXIOS_CLIENT(options));
   }
 
-  public async token(auth: AuthTokenReq): Promise<AuthTokenRes> {
-    const { data } = await this.post<AuthTokenRes>(`${this.path}/token`, auth);
-
-    return data;
+  public async token(auth: AuthTokenReq): AxiosPromise<AuthTokenRes> {
+    return this.post<AuthTokenRes>(`${this.path}/token`, auth);
   }
 
-  public async logout(config?: AxiosRequestConfig): Promise<boolean> {
-    const { data } = await this.post<boolean>(`${this.path}/logout`, {
+  public async logout(config?: AxiosRequestConfig): AxiosPromise<boolean> {
+    return this.post<boolean>(`${this.path}/logout`, {
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
       },
       ...config,
     });
-
-    return data;
   }
 
-  public async decrypt(config?: AxiosRequestConfig): Promise<AuthDecrypt> {
-    const { data } = await this.get<AuthDecrypt>(`${this.path}/decrypt`, {
+  public async decrypt(config?: AxiosRequestConfig): AxiosPromise<AuthDecrypt> {
+    return this.get<AuthDecrypt>(`${this.path}/decrypt`, {
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
       },
       ...config,
     });
-
-    return data;
   }
 }

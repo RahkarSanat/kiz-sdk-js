@@ -1,8 +1,8 @@
-# Kiz Platform SDK
+commit# Kiz Platform SDK
 
 [![npm](https://img.shields.io/npm/v/kiz-sdk)](https://www.npmjs.com/package/kiz-sdk)
-[![Coverage](https://raw.githubusercontent.com/RahkarSanat/kiz-sdk-js/main/coverage-badge.svg)](https://htmlpreview.github.io/?https://github.com/RahkarSanat/kiz-sdk-js/blob/main/docs/coverage/lcov-report/index.html)
-![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/RahkarSanat/kiz-sdk-js)
+[![Coverage](https://raw.githubu./task.enumsercontent.com/RahkarSanat/kiz-sdk-js/main/coverage-badge.svg)](https://htmlpreview.github.io/?https://github.com/RahkarSanat/kiz-sdk-js/blob/main/docs/coverage/lcov-report/index.html)
+![Sync Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/RahkarSanat/kiz-sdk-js)
 ![npm](https://img.shields.io/npm/dm/kiz-sdk)
 ![node-current](https://img.shields.io/node/v/kiz-sdk)
 [![GitHub](https://img.shields.io/github/license/RahkarSanat/kiz-sdk-js?style=flat)](https://rahkarsanat.github.io/kiz-sdk-js/)
@@ -14,7 +14,7 @@
 
 ---
 
-*config [from](https://superface.ai/blog/npm-publish-gh-actions-changelog)*
+_config [from](https://superface.ai/blog/npm-publish-gh-actions-changelog)_
 
 ## ChangeLogs
 

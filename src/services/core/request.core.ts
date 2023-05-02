@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { AxiosInstance, AxiosPromise, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 export interface RequestOptions {
   client: AxiosInstance;
@@ -13,8 +13,8 @@ export class RequestService<T = any> {
     this.client = options.client;
   }
 
-  protected async get<M = T>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<M>> {
-    return await this.client.get<M>(url, config);
+  protected async get<M = T>(url: string, config?: AxiosRequestConfig): AxiosPromise<M> {
+    return this.client.get<M>(url, config);
   }
 
   protected async post<M = T>(
