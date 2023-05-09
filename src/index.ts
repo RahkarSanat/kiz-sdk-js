@@ -1,5 +1,14 @@
 import { CreateAxiosDefaults } from 'axios';
-import { AuthService, LocationsService, UsersService, GrantsService, ArtifactsService } from './services';
+import {
+  AuthService,
+  LocationsService,
+  UsersService,
+  GrantsService,
+  ArtifactsService,
+  NotifierService,
+  TemplatesService,
+  ProvidersService,
+} from './services';
 
 export * from './services';
 export * from './common';
@@ -10,6 +19,9 @@ export class KizClient {
   protected users?: UsersService;
   protected grants?: GrantsService;
   protected artifacts?: ArtifactsService;
+  protected notifier?: NotifierService;
+  protected templates?: TemplatesService;
+  protected providers?: ProvidersService;
   // protected profiles?: ProfilesService;
   // protected drivers?: DriversService;
   // protected vehicles?: VehiclesService;
@@ -34,6 +46,20 @@ export class KizClient {
 
   public get artifactsService() {
     return (this.artifacts = this.artifacts ?? new ArtifactsService('/artifacts', this.options));
+  }
+
+  public get notifierService() {
+    return (this.notifier = this.notifier ?? new NotifierService('/notifications/notifier', this.options));
+  }
+
+  public get providersService() {
+    return (this.providers =
+      this.providers ?? new ProvidersService('/notifications/providers', this.options));
+  }
+
+  public get templatesService() {
+    return (this.templates =
+      this.templates ?? new TemplatesService('/notifications/templates', this.options));
   }
 
   // public get profilesService() {
