@@ -1,5 +1,5 @@
 import { Resource } from 'common/enums';
-import { BaseModel } from './base.model';
+import { BaseModel } from '../base.model';
 
 export class NotifierModel extends BaseModel<NotifierModel> {
   resource!: Resource;
