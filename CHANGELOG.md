@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
         - interface, model, service
 
 ## 1.6.0 - 2023-05-02
+### Added
 - `updateMetadataById` to fix metadata update (without effecting other keys in metadata)
 
 ## 1.5.2 - 2023-04-26
