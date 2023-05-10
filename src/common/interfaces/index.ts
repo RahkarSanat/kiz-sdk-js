@@ -1,3 +1,4 @@
+export * from './base';
 export * from './filter.interface';
 export * from './auth.interface';
 export * from './user.interface';

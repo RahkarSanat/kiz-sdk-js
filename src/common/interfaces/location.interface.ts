@@ -1,5 +1,5 @@
 import type { Geometry } from '../types';
-import { Base } from './base.interface';
+import { Base } from './base';
 
 export interface Location extends Base {
   type: string;
