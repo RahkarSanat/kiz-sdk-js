@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+
+### Added
+
+- method-input interface
+- artifact model
+- artifact types
+
+### Changed
+
+- move base interface to base folder
+- remove `replacementCharacter`
+- remove count from locationsService
+- change methods input form `stack` to `object`
+
+### Fixed
+- overwrite artifactsService
+
+### Removed
+
+- remove unused schema file
+
+
 ## 1.6.1 - 2023-05-09
 ### Added
 - Notification
