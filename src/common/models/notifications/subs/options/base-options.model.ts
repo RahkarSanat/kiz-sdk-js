@@ -5,5 +5,4 @@ export class Options extends NestedBaseModel {
   body?: string;
   key_args?: string[];
   render?: boolean;
-  replacementCharacter?: string;
 }
