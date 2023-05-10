@@ -1,5 +1,5 @@
 import { Resource } from 'common/enums';
-import { Base } from '../base.interface';
+import { Base } from '../base';
 
 export interface Notifier extends Base {
   resource: Resource;

@@ -1,12 +1,11 @@
 import { SocketLevel } from '../../enums';
-import { Base } from '../base.interface';
+import { Base } from '../base';
 
 export interface Options {
   provider_id: string;
   body?: string;
   key_args?: string[];
   render?: boolean;
-  replacementCharacter?: string;
 }
 
 // TODO: update after considering types (must be an interface)

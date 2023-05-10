@@ -1,4 +1,4 @@
-import { Base } from '../base.interface';
+import { Base } from '../base';
 
 export interface FcmConfigs {
   firebase_type: string;
