@@ -1,5 +1,5 @@
-import { AxiosPromise, AxiosRequestConfig, CreateAxiosDefaults } from 'axios';
-import { CountFilter, Filter } from '../../common';
+import { AxiosPromise, CreateAxiosDefaults } from 'axios';
+import { Count, Create, DeleteById, Find, FindById, RestoreById, UpdateBulk, UpdateById } from '../../common';
 import { RequestService } from './request.core';
 import { AXIOS_CLIENT } from '../../common/infrastructure';
 
@@ -8,7 +8,7 @@ export class BaseService<T> extends RequestService<T> {
     super(AXIOS_CLIENT(options));
   }
 
-  public async count<M = T>(filter?: CountFilter<M>, config?: AxiosRequestConfig): AxiosPromise<number> {
+  public async count<M = T>({ filter, config }: Count<M>): AxiosPromise<number> {
     return this.get<number>(`${this.path}/count`, {
       params: filter,
       headers: {
@@ -18,7 +18,7 @@ export class BaseService<T> extends RequestService<T> {
     });
   }
 
-  public async create<M = T, E = T>(entity: E, config?: AxiosRequestConfig): AxiosPromise<M> {
+  public async create<M = T, E = T>({ entity, config }: Create<E>): AxiosPromise<M> {
     return this.post<M>(this.path, entity, {
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
@@ -27,7 +27,7 @@ export class BaseService<T> extends RequestService<T> {
     });
   }
 
-  public async find<M = T>(filter?: Filter<M>, config?: AxiosRequestConfig): AxiosPromise<M> {
+  public async find<M = T>({ filter, config }: Find<M>): AxiosPromise<M> {
     return this.get<M>(this.path, {
       params: filter,
       headers: {
@@ -37,7 +37,7 @@ export class BaseService<T> extends RequestService<T> {
     });
   }
 
-  public async findById<M = T>(id: string, config?: AxiosRequestConfig): AxiosPromise<M> {
+  public async findById<M = T>(id: string, { config }: FindById): AxiosPromise<M> {
     return this.get<M>(`${this.path}/${id}`, {
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
@@ -46,7 +46,7 @@ export class BaseService<T> extends RequestService<T> {
     });
   }
 
-  public async updateById<M = T>(id: string, entity: T, config?: AxiosRequestConfig): AxiosPromise<M> {
+  public async updateById<M = T>(id: string, { entity, config }: UpdateById<M>): AxiosPromise<M> {
     return this.patch<M>(`${this.path}/${id}`, entity, {
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
@@ -55,7 +55,7 @@ export class BaseService<T> extends RequestService<T> {
     });
   }
 
-  public async deleteById<M = T>(id: string, config?: AxiosRequestConfig): AxiosPromise<M> {
+  public async deleteById<M = T>(id: string, { config }: DeleteById): AxiosPromise<M> {
     return this.delete<M>(`${this.path}/${id}`, {
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
@@ -64,7 +64,7 @@ export class BaseService<T> extends RequestService<T> {
     });
   }
 
-  public async restoreById<M = T>(id: string, config?: AxiosRequestConfig): AxiosPromise<M> {
+  public async restoreById<M = T>(id: string, { config }: RestoreById): AxiosPromise<M> {
     return this.put<M>(`${this.path}/${id}/restore`, null, {
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
@@ -73,11 +73,7 @@ export class BaseService<T> extends RequestService<T> {
     });
   }
 
-  public async updateBulk<M = T>(
-    filter: CountFilter<M>,
-    entity: T,
-    config?: AxiosRequestConfig,
-  ): AxiosPromise<number> {
+  public async updateBulk<M = T>({ filter, entity, config }: UpdateBulk<T, M>): AxiosPromise<number> {
     return this.patch<number>(`${this.path}/bulk`, entity, {
       params: filter,
       headers: {
