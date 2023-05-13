@@ -99,7 +99,7 @@ export class ArtifactsService extends RequestService<Artifact> {
 
   public async restoreById(type: string, id: string, { config }: ConfigMethodsInput): AxiosPromise<Artifact> {
     return this.put<Artifact>(
-      `https://api.kiz.ir/artifacts/trackers/645c89b62c0456cd059b7a8e/restore`,
+      `${this.path}/${type}/${id}/restore`,
       {},
       {
         config: {
