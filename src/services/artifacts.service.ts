@@ -5,6 +5,7 @@ import {
   CountQueryMethodsInput,
   ConfigMethodsInput,
   QueryMethodsInput,
+  ArtifactModel,
 } from '../common';
 import { RequestService } from './core';
 import { AXIOS_CLIENT } from '../common/infrastructure';
@@ -28,7 +29,7 @@ export class ArtifactsService extends RequestService<Artifact> {
 
   public async create(
     type: string,
-    entity: Artifact,
+    entity: ArtifactModel,
     { config }: ConfigMethodsInput,
   ): AxiosPromise<Artifact> {
     return this.post<Artifact>(`${this.path}/${type}`, entity, {
@@ -64,7 +65,7 @@ export class ArtifactsService extends RequestService<Artifact> {
   public async updateById(
     type: string,
     id: string,
-    entity: Artifact,
+    entity: ArtifactModel,
     { config }: ConfigMethodsInput,
   ): AxiosPromise<Artifact> {
     return this.patch<Artifact>(`${this.path}/${type}/${id}`, entity, {
@@ -95,7 +96,7 @@ export class ArtifactsService extends RequestService<Artifact> {
 
   public async updateBulk(
     type: string,
-    entity: Artifact,
+    entity: ArtifactModel,
     { filter, config }: CountQueryMethodsInput<Artifact>,
   ): AxiosPromise<number> {
     return this.patch<number>(`${this.path}/${type}/bulk`, entity, {

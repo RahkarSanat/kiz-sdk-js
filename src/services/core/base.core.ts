@@ -18,7 +18,7 @@ export class BaseService<T> extends RequestService<T> {
     });
   }
 
-  public async create<M = T, E = T>(entity: M, { config }: ConfigMethodsInput): AxiosPromise<M> {
+  public async create<M = T, E = T>(entity: E, { config }: ConfigMethodsInput): AxiosPromise<M> {
     return this.post<M>(this.path, entity, {
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
