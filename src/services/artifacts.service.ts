@@ -41,7 +41,7 @@ export class ArtifactsService extends RequestService<Artifact> {
 
   public async find(
     type: string,
-    { filter, config }: QueryMethodsInput,
+    { filter, config }: QueryMethodsInput<Artifact>,
   ): AxiosPromise<{ items: Artifact[] }> {
     return this.get<{ items: Artifact[] }>(`${this.path}/${type}`, {
       params: filter,
@@ -96,7 +96,7 @@ export class ArtifactsService extends RequestService<Artifact> {
   public async updateBulk(
     type: string,
     entity: Artifact,
-    { filter, config }: QueryMethodsInput,
+    { filter, config }: CountQueryMethodsInput<Artifact>,
   ): AxiosPromise<number> {
     return this.patch<number>(`${this.path}/${type}/bulk`, entity, {
       params: filter,

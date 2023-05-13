@@ -27,7 +27,7 @@ export class BaseService<T> extends RequestService<T> {
     });
   }
 
-  public async find<M = { items: T[] }>({ filter, config }: QueryMethodsInput<M>): AxiosPromise<M> {
+  public async find<M = { items: T[] }>({ filter, config }: QueryMethodsInput<T>): AxiosPromise<M> {
     return this.get<M>(this.path, {
       params: filter,
       headers: {
@@ -73,7 +73,10 @@ export class BaseService<T> extends RequestService<T> {
     });
   }
 
-  public async updateBulk<M = T>(entity: M, { filter, config }: QueryMethodsInput<M>): AxiosPromise<number> {
+  public async updateBulk<M = T>(
+    entity: M,
+    { filter, config }: CountQueryMethodsInput<M>,
+  ): AxiosPromise<number> {
     return this.patch<number>(`${this.path}/bulk`, entity, {
       params: filter,
       headers: {
