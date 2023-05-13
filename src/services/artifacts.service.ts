@@ -19,11 +19,13 @@ export class ArtifactsService extends RequestService<Artifact> {
     { filter, config }: CountQueryMethodsInput<Artifact>,
   ): AxiosPromise<number> {
     return this.get<number>(`${this.path}/${type}/count`, {
-      params: filter,
-      headers: {
-        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+      config: {
+        params: filter,
+        headers: {
+          Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+        },
+        ...config,
       },
-      ...config,
     });
   }
 
@@ -33,10 +35,12 @@ export class ArtifactsService extends RequestService<Artifact> {
     { config }: ConfigMethodsInput,
   ): AxiosPromise<Artifact> {
     return this.post<Artifact>(`${this.path}/${type}`, entity, {
-      headers: {
-        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+      config: {
+        headers: {
+          Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+        },
+        ...config,
       },
-      ...config,
     });
   }
 
@@ -45,20 +49,24 @@ export class ArtifactsService extends RequestService<Artifact> {
     { filter, config }: QueryMethodsInput<Artifact>,
   ): AxiosPromise<{ items: Artifact[] }> {
     return this.get<{ items: Artifact[] }>(`${this.path}/${type}`, {
-      params: filter,
-      headers: {
-        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+      config: {
+        params: filter,
+        headers: {
+          Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+        },
+        ...config,
       },
-      ...config,
     });
   }
 
   public async findById(type: string, id: string, { config }: ConfigMethodsInput): AxiosPromise<Artifact> {
     return this.get<Artifact>(`${this.path}/${type}/${id}`, {
-      headers: {
-        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+      config: {
+        headers: {
+          Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+        },
+        ...config,
       },
-      ...config,
     });
   }
 
@@ -69,29 +77,39 @@ export class ArtifactsService extends RequestService<Artifact> {
     { config }: ConfigMethodsInput,
   ): AxiosPromise<Artifact> {
     return this.patch<Artifact>(`${this.path}/${type}/${id}`, entity, {
-      headers: {
-        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+      config: {
+        headers: {
+          Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+        },
+        ...config,
       },
-      ...config,
     });
   }
 
   public async deleteById(type: string, id: string, { config }: ConfigMethodsInput): AxiosPromise<Artifact> {
     return this.delete<Artifact>(`${this.path}/${type}/${id}`, {
-      headers: {
-        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+      config: {
+        headers: {
+          Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+        },
+        ...config,
       },
-      ...config,
     });
   }
 
   public async restoreById(type: string, id: string, { config }: ConfigMethodsInput): AxiosPromise<Artifact> {
-    return this.put<Artifact>(`${this.path}/${type}/${id}/restore`, null, {
-      headers: {
-        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+    return this.put<Artifact>(
+      `https://api.kiz.ir/artifacts/trackers/645c89b62c0456cd059b7a8e/restore`,
+      {},
+      {
+        config: {
+          headers: {
+            Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+          },
+          ...config,
+        },
       },
-      ...config,
-    });
+    );
   }
 
   public async updateBulk(
@@ -100,11 +118,13 @@ export class ArtifactsService extends RequestService<Artifact> {
     { filter, config }: CountQueryMethodsInput<Artifact>,
   ): AxiosPromise<number> {
     return this.patch<number>(`${this.path}/${type}/bulk`, entity, {
-      params: filter,
-      headers: {
-        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+      config: {
+        params: filter,
+        headers: {
+          Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+        },
+        ...config,
       },
-      ...config,
     });
   }
 
@@ -115,10 +135,12 @@ export class ArtifactsService extends RequestService<Artifact> {
     { config }: ConfigMethodsInput,
   ): AxiosPromise<ArtifactMetadata> {
     return this.patch<ArtifactMetadata>(`${this.path}/${type}/${identity}/metadata`, metadata, {
-      headers: {
-        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+      config: {
+        headers: {
+          Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+        },
+        ...config,
       },
-      ...config,
     });
   }
 }
