@@ -27,7 +27,7 @@ export class BaseService<T> extends RequestService<T> {
     });
   }
 
-  public async find<M = T>({ filter, config }: Find<M>): AxiosPromise<M> {
+  public async find<M = { items: T[] }>({ filter, config }: Find<M>): AxiosPromise<M> {
     return this.get<M>(this.path, {
       params: filter,
       headers: {

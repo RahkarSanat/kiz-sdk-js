@@ -57,8 +57,8 @@ export class ArtifactsService extends RequestService<Artifact> {
     config,
   }: Find<Artifact> & {
     type: string;
-  }): AxiosPromise<Artifact> {
-    return this.get<Artifact>(`${this.path}/${type}`, {
+  }): AxiosPromise<{ items: Artifact[] }> {
+    return this.get<{ items: Artifact[] }>(`${this.path}/${type}`, {
       params: filter,
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
