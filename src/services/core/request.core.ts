@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { AxiosInstance, AxiosPromise, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { AxiosInstance, AxiosPromise, AxiosResponse } from 'axios';
 import { ConfigMethodsInput } from 'common';
 
 export interface RequestOptions {
@@ -12,6 +12,13 @@ export class RequestService<T = any> {
 
   constructor(options: RequestOptions) {
     this.client = options.client;
+    this.client.interceptors.response.use(
+      (response) => response,
+      (err) => {
+        console.log('error occure');
+        console.log(err?.response?.data);
+      },
+    );
   }
 
   protected async get<M = T>(url: string, { config }: ConfigMethodsInput): AxiosPromise<M> {
