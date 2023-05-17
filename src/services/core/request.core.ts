@@ -32,7 +32,7 @@ export class RequestService<T = any> {
 
   protected async post<M = T>(
     url: string,
-    data: any = {},
+    data: any,
     { config }: ConfigMethodsInput,
   ): Promise<AxiosResponse<M>> {
     return await this.client.post<M>(url, data, config);
@@ -52,7 +52,7 @@ export class RequestService<T = any> {
 
   protected async patch<M = T>(
     url: string,
-    data: any = {},
+    data: any,
     { config }: ConfigMethodsInput,
   ): Promise<AxiosResponse<M>> {
     return await this.client.patch<M>(url, data, config);
