@@ -1,5 +1,6 @@
 import { Action } from 'common/enums';
 import { BaseModel } from './base.model';
+import { GrantTime } from 'common/interfaces';
 
 export class GrantModel extends BaseModel<GrantModel> {
   subject!: string;
@@ -8,10 +9,5 @@ export class GrantModel extends BaseModel<GrantModel> {
   field?: string[];
   filter?: string[];
   location?: string[];
-  time?: GrantTimeModel[];
-}
-
-export class GrantTimeModel {
-  cron_exp!: string;
-  duration!: number;
+  time?: GrantTime[];
 }
