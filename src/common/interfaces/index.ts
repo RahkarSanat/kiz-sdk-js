@@ -6,3 +6,4 @@ export * from './grant.interface';
 export * from './location.interface';
 export * from './artifact.interface';
 export * from './notifications';
+export * from './config.interface';

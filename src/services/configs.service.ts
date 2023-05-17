@@ -1,14 +1,13 @@
-import { AxiosPromise, CreateAxiosDefaults } from 'axios';
-import { ConfigMethodsInput, CountQueryMethodsInput, QueryMethodsInput } from '../../common';
-import { RequestService } from './request.core';
-import { AXIOS_CLIENT } from '../../common/infrastructure';
+import { Config, ConfigMethodsInput, ConfigModel, CountQueryMethodsInput, QueryMethodsInput } from 'common';
+import { RequestService } from './core';
+import axios, { AxiosPromise, CreateAxiosDefaults } from 'axios';
 
-export class BaseService<T> extends RequestService<T> {
+export class ConfigsService extends RequestService<Config> {
   constructor(protected readonly path: string, protected readonly options?: CreateAxiosDefaults) {
-    super(AXIOS_CLIENT(options));
+    super({ client: axios.create(options) });
   }
 
-  public async count<M = T>({ filter, config }: CountQueryMethodsInput<M>): AxiosPromise<number> {
+  public async count({ filter, config }: CountQueryMethodsInput<Config>): AxiosPromise<number> {
     return this.get<number>(`${this.path}/count`, {
       config: {
         params: filter,
@@ -20,8 +19,8 @@ export class BaseService<T> extends RequestService<T> {
     });
   }
 
-  public async create<M = T, E = T>(entity: E, { config }: ConfigMethodsInput): AxiosPromise<M> {
-    return this.post<M>(this.path, entity, {
+  public async create(entity: ConfigModel, { config }: ConfigMethodsInput): AxiosPromise<Config> {
+    return this.post<Config>(`${this.path}`, entity, {
       config: {
         headers: {
           Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
@@ -31,8 +30,8 @@ export class BaseService<T> extends RequestService<T> {
     });
   }
 
-  public async find<M = { items: T[] }>({ filter, config }: QueryMethodsInput<T>): AxiosPromise<M> {
-    return this.get<M>(this.path, {
+  public async find({ filter, config }: QueryMethodsInput<Config>): AxiosPromise<Config[]> {
+    return this.get<Config[]>(`${this.path}`, {
       config: {
         params: filter,
         headers: {
@@ -43,8 +42,8 @@ export class BaseService<T> extends RequestService<T> {
     });
   }
 
-  public async findById<M = T>(id: string, { config }: ConfigMethodsInput): AxiosPromise<M> {
-    return this.get<M>(`${this.path}/${id}`, {
+  public async findById(id: string, { config }: ConfigMethodsInput): AxiosPromise<Config> {
+    return this.get<Config>(`${this.path}/${id}`, {
       config: {
         headers: {
           Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
@@ -54,8 +53,12 @@ export class BaseService<T> extends RequestService<T> {
     });
   }
 
-  public async updateById<M = T>(id: string, entity: M, { config }: ConfigMethodsInput): AxiosPromise<M> {
-    return this.patch<M>(`${this.path}/${id}`, entity, {
+  public async updateById(
+    id: string,
+    entity: ConfigModel,
+    { config }: ConfigMethodsInput,
+  ): AxiosPromise<Config> {
+    return this.patch<Config>(`${this.path}/${id}`, entity, {
       config: {
         headers: {
           Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
@@ -65,8 +68,8 @@ export class BaseService<T> extends RequestService<T> {
     });
   }
 
-  public async deleteById<M = T>(id: string, { config }: ConfigMethodsInput): AxiosPromise<M> {
-    return this.delete<M>(`${this.path}/${id}`, {
+  public async deleteById(id: string, { config }: ConfigMethodsInput): AxiosPromise<Config> {
+    return this.delete<Config>(`${this.path}/${id}`, {
       config: {
         headers: {
           Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
@@ -76,8 +79,8 @@ export class BaseService<T> extends RequestService<T> {
     });
   }
 
-  public async restoreById<M = T>(id: string, { config }: ConfigMethodsInput): AxiosPromise<M> {
-    return this.put<M>(
+  public async restoreById(id: string, { config }: ConfigMethodsInput): AxiosPromise<Config> {
+    return this.put<Config>(
       `${this.path}/${id}/restore`,
       {},
       {
@@ -91,9 +94,9 @@ export class BaseService<T> extends RequestService<T> {
     );
   }
 
-  public async updateBulk<M = T>(
-    entity: M,
-    { filter, config }: CountQueryMethodsInput<M>,
+  public async updateBulk(
+    entity: ConfigModel,
+    { filter, config }: CountQueryMethodsInput<Config>,
   ): AxiosPromise<number> {
     return this.patch<number>(`${this.path}/bulk`, entity, {
       config: {
