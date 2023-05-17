@@ -8,24 +8,32 @@ export class AuthService extends RequestService {
   }
 
   public async token(auth: AuthTokenReq): AxiosPromise<AuthTokenRes> {
-    return this.post<AuthTokenRes>(`${this.path}/token`, auth);
+    return this.post<AuthTokenRes>(`${this.path}/token`, auth, {});
   }
 
   public async logout(config?: AxiosRequestConfig): AxiosPromise<boolean> {
-    return this.post<boolean>(`${this.path}/logout`, {
-      headers: {
-        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+    return this.post<boolean>(
+      `${this.path}/logout`,
+      {},
+      {
+        config: {
+          headers: {
+            Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+          },
+          ...config,
+        },
       },
-      ...config,
-    });
+    );
   }
 
   public async decrypt(config?: AxiosRequestConfig): AxiosPromise<AuthDecrypt> {
     return this.get<AuthDecrypt>(`${this.path}/decrypt`, {
-      headers: {
-        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+      config: {
+        headers: {
+          Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+        },
+        ...config,
       },
-      ...config,
     });
   }
 }

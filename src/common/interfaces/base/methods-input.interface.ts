@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import { CountFilter } from '../filter.interface';
+import { CountFilter, Filter, OneFilter } from '../filter.interface';
 
 /**
  *
@@ -8,6 +8,16 @@ import { CountFilter } from '../filter.interface';
  */
 
 export interface QueryMethodsInput<T = any> {
+  filter?: Filter<T>;
+  config?: AxiosRequestConfig;
+}
+
+export interface OneQueryMethodsInput<T = any> {
+  filter?: OneFilter<T>;
+  config?: AxiosRequestConfig;
+}
+
+export interface CountQueryMethodsInput<T = any> {
   filter?: CountFilter<T>;
   config?: AxiosRequestConfig;
 }
@@ -17,12 +27,11 @@ export interface CommandMethodsInput<M = any> {
   config?: AxiosRequestConfig;
 }
 
-export interface UpdateById<M> extends CommandMethodsInput<M> {
-  entity: M;
-}
-
 // You can follow the above pattern to convert any `type` to `interface`
 
+export type ConfigMethodsInput = Omit<QueryMethodsInput, 'filter'>;
+
+export type UpdateById<M> = Omit<CommandMethodsInput<M>, 'entity'>;
 export type FindById = Omit<QueryMethodsInput, 'filter'>;
 export type DeleteById = Omit<CommandMethodsInput, 'entity'>;
 export type RestoreById = DeleteById;
@@ -33,4 +42,4 @@ export type Find<T> = QueryMethodsInput<T>;
 
 export type Create<M> = CommandMethodsInput<M>;
 
-export type UpdateBulk<T, M> = QueryMethodsInput<T> & CommandMethodsInput<M>;
+export type UpdateBulk<M> = QueryMethodsInput<M>;

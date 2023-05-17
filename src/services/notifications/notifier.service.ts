@@ -9,10 +9,12 @@ export class NotifierService extends BaseService<Notifier> {
 
   public async lookup(entity: NotifierModel, config?: AxiosRequestConfig): AxiosPromise<Notifier> {
     return this.post<Notifier>(this.path, entity, {
-      headers: {
-        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+      config: {
+        headers: {
+          Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+        },
+        ...config,
       },
-      ...config,
     });
   }
 }

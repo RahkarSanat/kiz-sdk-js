@@ -8,6 +8,7 @@ import {
   NotifierService,
   TemplatesService,
   ProvidersService,
+  ConfigsService,
 } from './services';
 
 export * from './services';
@@ -22,6 +23,7 @@ export class KizClient {
   protected notifier?: NotifierService;
   protected templates?: TemplatesService;
   protected providers?: ProvidersService;
+  protected configs?: ConfigsService;
   // protected profiles?: ProfilesService;
   // protected drivers?: DriversService;
   // protected vehicles?: VehiclesService;
@@ -46,6 +48,10 @@ export class KizClient {
 
   public get artifactsService() {
     return (this.artifacts = this.artifacts ?? new ArtifactsService('/artifacts', this.options));
+  }
+
+  public get configsService() {
+    return (this.configs = this.configs ?? new ConfigsService('/configs', this.options));
   }
 
   public get notifierService() {
