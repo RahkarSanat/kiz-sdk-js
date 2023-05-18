@@ -7,36 +7,63 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
-## 2.0.0 - 2023-05-10
 ### Added
+
+- filter instead of CountFilter for find method in core and artifact service
+- config service
+- custom logger passes to request.core.ts for Axios error
+- grants model
+
+### Changed
+
+- find method return type in core and artifact service
+- level-up required arguments from objects in the core and artifact service
+- objectify unrequited fields in the request core
+- artifact model file name from artifact-model.ts to artifact.model.ts
+
+### Fixed
+
+- HTTP put method null as data error
+
+## 2.0.0 - 2023-05-10
+
+### Added
+
 - method-input interface
 - artifact model
 - artifact types
 
 ### Changed
+
 - move base interface to base folder
 - remove `replacementCharacter`
 - remove count from locationsService
 - change methods input form `stack` to `object`
 
 ### Removed
+
 - remove unused schema file
 
 ### Fixed
+
 - overwrite artifactsService
 
 ## 1.6.1 - 2023-05-09
+
 ### Added
+
 - Notification
-    - notifier
-        - interface, model, service
-    - templates
-        - interface, model, service
-    - providers
-        - interface, model, service
+  - notifier
+    - interface, model, service
+  - templates
+    - interface, model, service
+  - providers
+    - interface, model, service
 
 ## 1.6.0 - 2023-05-02
+
 ### Added
+
 - `updateMetadataById` to fix metadata update (without effecting other keys in metadata)
 
 ## 1.5.2 - 2023-04-26
@@ -58,9 +85,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 1.3.1 - 2023-03-16
 
 ## 1.3.0 - 2023-03-16
+
 ### Added
+
 - Exception handling
 - `infrastructure` directory to keep SDK internal stuff (helpers, utils, enum etc)
 
 ### Fixed
+
 - Require the `options` parameter

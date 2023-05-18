@@ -1,6 +1,6 @@
-import { Action } from 'common/enums';
+import { Action } from '../enums';
 import { BaseModel } from './base.model';
-import { GrantTime } from 'common/interfaces';
+import { GrantTime } from '../interfaces';
 
 export class GrantModel extends BaseModel<GrantModel> {
   subject!: string;
