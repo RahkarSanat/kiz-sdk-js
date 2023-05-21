@@ -35,7 +35,7 @@ export interface SocketConfigs {
 export interface Provider extends Base {
   name: ProviderName;
   description?: string;
-  active: boolean;
+  active?: boolean;
   sms?: SmsConfigs;
   mail?: MailConfigs;
   fcm?: FcmConfigs;
