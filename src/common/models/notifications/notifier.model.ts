@@ -5,6 +5,6 @@ export class NotifierModel extends BaseModel<NotifierModel> {
   resource!: Resource;
   reason!: string;
   value_args?: string[];
-  ttl!: number;
+  ttl?: number;
   metadata?: Record<string, unknown>;
 }
