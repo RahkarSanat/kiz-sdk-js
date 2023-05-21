@@ -9,6 +9,7 @@ import {
   TemplatesService,
   ProvidersService,
   ConfigsService,
+  RecipientsService,
 } from './services';
 
 export * from './services';
@@ -21,8 +22,9 @@ export class KizClient {
   protected grants?: GrantsService;
   protected artifacts?: ArtifactsService;
   protected notifier?: NotifierService;
-  protected templates?: TemplatesService;
   protected providers?: ProvidersService;
+  protected recipients?: RecipientsService;
+  protected templates?: TemplatesService;
   protected configs?: ConfigsService;
   // protected profiles?: ProfilesService;
   // protected drivers?: DriversService;
@@ -63,6 +65,10 @@ export class KizClient {
       this.providers ?? new ProvidersService('/notifications/providers', this.options));
   }
 
+  public get recipientsService() {
+    return (this.recipients =
+      this.recipients ?? new RecipientsService('/notifications/recipients', this.options));
+  }
   public get templatesService() {
     return (this.templates =
       this.templates ?? new TemplatesService('/notifications/templates', this.options));

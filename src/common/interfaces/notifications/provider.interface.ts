@@ -1,3 +1,4 @@
+import { ProviderName } from 'common/enums';
 import { Base } from '../base';
 
 export interface FcmConfigs {
@@ -32,7 +33,7 @@ export interface SocketConfigs {
 }
 
 export interface Provider extends Base {
-  name: string;
+  name: ProviderName;
   description?: string;
   active: boolean;
   sms?: SmsConfigs;

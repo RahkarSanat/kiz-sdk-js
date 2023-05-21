@@ -1,8 +1,9 @@
-import { SocketLevel } from '../../enums';
+import { SmsFunctionality, SocketLevel } from '../../enums';
 import { Base } from '../base';
 
 export interface Options {
   provider_id: string;
+  recipient_id: string;
   body?: string;
   key_args?: string[];
   render?: boolean;
@@ -17,8 +18,8 @@ export interface MailOptions extends Options {
 }
 
 export interface SmsOptions extends Options {
-  body?: string;
-  lookup?: boolean;
+  functionality: SmsFunctionality;
+  retry?: boolean;
 }
 
 export interface SocketOptions extends Options {
@@ -31,6 +32,7 @@ export interface SocketOptions extends Options {
 export interface Template extends Base {
   name: string;
   description?: string;
+  reason: string;
   sms?: SmsOptions;
   mail?: MailOptions;
   fcm?: FcmOptions;
