@@ -10,3 +10,4 @@ export * from './notifications';
 export * from './config.interface';
 export * from './profile.interface';
 export * from './driver.interface';
+export * from './vehicle.interface';

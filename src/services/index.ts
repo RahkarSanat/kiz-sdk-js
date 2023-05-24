@@ -7,3 +7,4 @@ export * from './notifications';
 export * from './configs.service';
 export * from './profile.service';
 export * from './drivers.service';
+export * from './vehicles.service';

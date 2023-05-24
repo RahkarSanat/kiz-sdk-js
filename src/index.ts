@@ -13,6 +13,7 @@ import {
   OtpService,
   ProfileService,
   DriversService,
+  VehiclesService,
 } from './services';
 
 export * from './services';
@@ -32,7 +33,7 @@ export class KizClient {
   protected templates?: TemplatesService;
   protected configs?: ConfigsService;
   protected drivers?: DriversService;
-  // protected vehicles?: VehiclesService;
+  protected vehicles?: VehiclesService;
 
   constructor(protected readonly options?: CreateAxiosDefaults) {}
 
@@ -88,7 +89,7 @@ export class KizClient {
     return (this.drivers = this.drivers ?? new DriversService('/drivers', this.options));
   }
 
-  // public get vehiclesService() {
-  //   return (this.vehicles = this.vehicles ?? new VehiclesService('/vehicles', this.options));
-  // }
+  public get vehiclesService() {
+    return (this.vehicles = this.vehicles ?? new VehiclesService('/vehicles', this.options));
+  }
 }
