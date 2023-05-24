@@ -6,5 +6,7 @@ export class NotifierModel extends BaseModel<NotifierModel> {
   reason!: string;
   value_args?: string[];
   ttl?: number;
+  seen?: Record<string, boolean>;
+  status?: Record<string, unknown>;
   metadata?: Record<string, unknown>;
 }
