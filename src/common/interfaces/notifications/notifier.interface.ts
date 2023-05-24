@@ -3,9 +3,10 @@ import { Base } from '../base';
 
 export interface Notifier extends Base {
   resource: Resource;
-  receptor: string;
-  template: string;
-  value_args?: string[];
+  reason: string;
+  value_args: string[];
+  ttl?: number;
+  seen?: Record<string, boolean>;
+  status: Record<string, unknown>;
   metadata: Record<string, unknown>;
-  seen: boolean;
 }

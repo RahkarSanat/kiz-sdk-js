@@ -1,4 +1,4 @@
-import { GrantType, Scope } from '../enums';
+import { GrantType } from '../enums';
 
 export interface AuthTokenRes {
   access_token?: string;
@@ -22,7 +22,7 @@ export interface AuthTokenReq {
   password?: string;
   confirmation_code?: string;
   refresh_token?: string;
-  scope?: Scope[];
+  scope?: string[];
   code?: string;
   roles?: string[];
 }
