@@ -5,3 +5,4 @@ export * from './grants.service';
 export * from './artifacts.service';
 export * from './notifications';
 export * from './configs.service';
+export * from './profile.service';

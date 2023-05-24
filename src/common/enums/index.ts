@@ -7,3 +7,5 @@ export * from './resource.enum';
 export * from './socket-level.enum';
 export * from './provider-name.enum';
 export * from './sms-functionality.enum';
+export * from './user-type.enum';
+export * from './gender.enum';
