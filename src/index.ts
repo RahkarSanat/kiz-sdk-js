@@ -10,6 +10,7 @@ import {
   ProvidersService,
   ConfigsService,
   RecipientsService,
+  OtpService,
 } from './services';
 
 export * from './services';
@@ -17,6 +18,7 @@ export * from './common';
 
 export class KizClient {
   protected auth?: AuthService;
+  protected opt?: OtpService;
   protected locations?: LocationsService;
   protected users?: UsersService;
   protected grants?: GrantsService;
@@ -34,6 +36,9 @@ export class KizClient {
 
   public get authService() {
     return (this.auth = this.auth ?? new AuthService('/auth', this.options));
+  }
+  public get otpService() {
+    return (this.opt = this.opt ?? new OtpService('/auth/otp', this.options));
   }
 
   public get locationService() {
