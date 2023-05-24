@@ -9,3 +9,4 @@ export * from './artifact.interface';
 export * from './notifications';
 export * from './config.interface';
 export * from './profile.interface';
+export * from './driver.interface';

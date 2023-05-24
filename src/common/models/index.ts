@@ -5,3 +5,4 @@ export * from './grant.model';
 export * from './artifact.model';
 export * from './config.model';
 export * from './profile.model';
+export * from './driver.model';

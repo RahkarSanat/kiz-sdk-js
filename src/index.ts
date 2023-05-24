@@ -12,6 +12,7 @@ import {
   RecipientsService,
   OtpService,
   ProfileService,
+  DriversService,
 } from './services';
 
 export * from './services';
@@ -30,7 +31,7 @@ export class KizClient {
   protected recipients?: RecipientsService;
   protected templates?: TemplatesService;
   protected configs?: ConfigsService;
-  // protected drivers?: DriversService;
+  protected drivers?: DriversService;
   // protected vehicles?: VehiclesService;
 
   constructor(protected readonly options?: CreateAxiosDefaults) {}
@@ -83,9 +84,9 @@ export class KizClient {
       this.templates ?? new TemplatesService('/notifications/templates', this.options));
   }
 
-  // public get driversService() {
-  //   return (this.drivers = this.drivers ?? new DriversService('/drivers', this.options));
-  // }
+  public get driversService() {
+    return (this.drivers = this.drivers ?? new DriversService('/drivers', this.options));
+  }
 
   // public get vehiclesService() {
   //   return (this.vehicles = this.vehicles ?? new VehiclesService('/vehicles', this.options));
