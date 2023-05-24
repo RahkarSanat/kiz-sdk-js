@@ -5,6 +5,6 @@ export * from './grants.service';
 export * from './artifacts.service';
 export * from './notifications';
 export * from './configs.service';
-export * from './profile.service';
+export * from './profiles.service';
 export * from './drivers.service';
 export * from './vehicles.service';

@@ -11,9 +11,9 @@ import {
   ConfigsService,
   RecipientsService,
   OtpService,
-  ProfileService,
   DriversService,
   VehiclesService,
+  ProfilesService,
 } from './services';
 
 export * from './services';
@@ -24,7 +24,7 @@ export class KizClient {
   protected opt?: OtpService;
   protected locations?: LocationsService;
   protected users?: UsersService;
-  protected profile?: ProfileService;
+  protected profile?: ProfilesService;
   protected grants?: GrantsService;
   protected artifacts?: ArtifactsService;
   protected notifier?: NotifierService;
@@ -53,7 +53,7 @@ export class KizClient {
   }
 
   public get profilesService() {
-    return (this.profile = this.profile ?? new ProfileService('/profiles', this.options));
+    return (this.profile = this.profile ?? new ProfilesService('/profiles', this.options));
   }
   public get grantsService() {
     return (this.grants = this.grants ?? new GrantsService('/grants', this.options));

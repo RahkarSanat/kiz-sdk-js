@@ -3,7 +3,7 @@ import { BaseModel } from './base.model';
 
 export class ProfileModel extends BaseModel<ProfileModel> {
   type!: UserType;
-  fist_name?: string;
+  first_name?: string;
   last_name?: string;
   gender?: Gender;
   national_code?: string;
