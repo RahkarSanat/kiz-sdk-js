@@ -12,18 +12,14 @@ export class AuthService extends RequestService {
   }
 
   public async logout(config?: AxiosRequestConfig): AxiosPromise<boolean> {
-    return this.post<boolean>(
-      `${this.path}/logout`,
-      {},
-      {
-        config: {
-          headers: {
-            Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
-          },
-          ...config,
+    return this.get<boolean>(`${this.path}/logout`, {
+      config: {
+        headers: {
+          Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
         },
+        ...config,
       },
-    );
+    });
   }
 
   public async decrypt(config?: AxiosRequestConfig): AxiosPromise<AuthDecrypt> {
