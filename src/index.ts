@@ -10,18 +10,18 @@ import {
   ProvidersService,
   ConfigsService,
   RecipientsService,
-  OtpService,
   DriversService,
   VehiclesService,
   ProfilesService,
+  OtpMqttService,
 } from './services';
 
 export * from './services';
 export * from './common';
 
 export class KizClient {
-  protected auth?: AuthService;
-  protected opt?: OtpService;
+  protected baseAuth?: AuthService;
+  protected optMqtt?: OtpMqttService;
   protected locations?: LocationsService;
   protected users?: UsersService;
   protected profile?: ProfilesService;
@@ -36,13 +36,6 @@ export class KizClient {
   protected vehicles?: VehiclesService;
 
   constructor(protected readonly options?: CreateAxiosDefaults) {}
-
-  public get authService() {
-    return (this.auth = this.auth ?? new AuthService('/auth', this.options));
-  }
-  public get otpService() {
-    return (this.opt = this.opt ?? new OtpService('/auth/otp', this.options));
-  }
 
   public get locationService() {
     return (this.locations = this.locations ?? new LocationsService('/locations', this.options));
@@ -67,29 +60,32 @@ export class KizClient {
     return (this.configs = this.configs ?? new ConfigsService('/configs', this.options));
   }
 
-  public get notifierService() {
-    return (this.notifier = this.notifier ?? new NotifierService('/notifications/notifier', this.options));
+  public get auth() {
+    const authService = (this.baseAuth = this.baseAuth ?? new AuthService('/auth', this.options));
+    const otpMqttService = (this.optMqtt = this.optMqtt ?? new OtpMqttService('/auth/otp', this.options));
+
+    return { authService, otpMqttService };
   }
 
-  public get providersService() {
-    return (this.providers =
+  public get transports() {
+    const driversService = (this.drivers =
+      this.drivers ?? new DriversService('/transports/drivers', this.options));
+    const vehiclesService = (this.vehicles =
+      this.vehicles ?? new VehiclesService('/transports/vehicles', this.options));
+
+    return { driversService, vehiclesService };
+  }
+
+  public get notifications() {
+    const notifierService = (this.notifier =
+      this.notifier ?? new NotifierService('/notifications/notifier', this.options));
+    const providersService = (this.providers =
       this.providers ?? new ProvidersService('/notifications/providers', this.options));
-  }
-
-  public get recipientsService() {
-    return (this.recipients =
+    const recipientsService = (this.recipients =
       this.recipients ?? new RecipientsService('/notifications/recipients', this.options));
-  }
-  public get templatesService() {
-    return (this.templates =
+    const templatesService = (this.templates =
       this.templates ?? new TemplatesService('/notifications/templates', this.options));
-  }
 
-  public get driversService() {
-    return (this.drivers = this.drivers ?? new DriversService('/drivers', this.options));
-  }
-
-  public get vehiclesService() {
-    return (this.vehicles = this.vehicles ?? new VehiclesService('/vehicles', this.options));
+    return { notifierService, providersService, recipientsService, templatesService };
   }
 }
