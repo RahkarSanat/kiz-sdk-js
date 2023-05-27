@@ -2,7 +2,7 @@ import { AxiosPromise, AxiosRequestConfig, CreateAxiosDefaults } from 'axios';
 import { AXIOS_CLIENT } from '../../common/infrastructure';
 import { RequestService } from '../core/request.core';
 import { OtpMqttReqModel, OtpMqttRes, OtpMqttVerifyReqModel, OtpMqttVerifyRes } from 'common';
-export class OtpService extends RequestService {
+export class OtpMqttService extends RequestService {
   constructor(protected readonly path: string, protected readonly options?: CreateAxiosDefaults) {
     super(AXIOS_CLIENT(options));
   }
