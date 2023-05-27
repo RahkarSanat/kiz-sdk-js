@@ -1,7 +1,6 @@
 export * from './auth';
 export * from './base';
 export * from './filter.interface';
-export * from './auth/auth.interface';
 export * from './user.interface';
 export * from './grant.interface';
 export * from './location.interface';
