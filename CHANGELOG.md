@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 2.1.1 - 2023-05-28
+
 ## 2.1.0 - 2023-05-18
 ### Added
 - filter instead of CountFilter for find method in core and artifact service
