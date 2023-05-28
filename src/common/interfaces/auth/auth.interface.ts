@@ -1,4 +1,4 @@
-import { GrantType } from '../enums';
+import { GrantType } from '../../enums';
 
 export interface AuthTokenRes {
   access_token?: string;
