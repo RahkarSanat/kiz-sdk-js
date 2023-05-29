@@ -1,14 +1,14 @@
 import { AxiosPromise, AxiosRequestConfig, CreateAxiosDefaults } from 'axios';
 import { AXIOS_CLIENT } from '../../common/infrastructure';
 import { RequestService } from '../core/request.core';
-import { OtpMqttReqModel, OtpMqttRes, OtpMqttVerifyReqModel, OtpMqttVerifyRes } from 'common';
-export class OtpMqttService extends RequestService {
+import { MqttOtpResponse, verifyMqttOtpRequest, Void } from '../../common';
+export class OtpService extends RequestService {
   constructor(protected readonly path: string, protected readonly options?: CreateAxiosDefaults) {
     super(AXIOS_CLIENT(options));
   }
 
-  public async optMqtt(otp: OtpMqttReqModel, config?: AxiosRequestConfig): AxiosPromise<OtpMqttRes> {
-    return this.post<OtpMqttRes>(`${this.path}/mqtt`, otp, {
+  public async mqttOtp(config?: AxiosRequestConfig): AxiosPromise<MqttOtpResponse> {
+    return this.get<MqttOtpResponse>(`${this.path}/mqtt`, {
       config: {
         headers: {
           Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
@@ -18,11 +18,11 @@ export class OtpMqttService extends RequestService {
     });
   }
 
-  public async otpMqttVerify(
-    otpVerify: OtpMqttVerifyReqModel,
+  public async verifyMqttOtp(
+    otpVerify: verifyMqttOtpRequest,
     config?: AxiosRequestConfig,
-  ): AxiosPromise<OtpMqttVerifyRes> {
-    return this.post<OtpMqttVerifyRes>(`${this.path}/verify`, otpVerify, {
+  ): AxiosPromise<Void<boolean>> {
+    return this.post<Void<boolean>>(`${this.path}/verify`, otpVerify, {
       config: {
         headers: {
           Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,

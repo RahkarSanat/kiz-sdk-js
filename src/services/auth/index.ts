@@ -1,2 +1,2 @@
-export * from './otp-mqtt.service';
+export * from './otp.service';
 export * from './auth.service';

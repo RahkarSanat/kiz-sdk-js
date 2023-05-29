@@ -1,2 +1,1 @@
-export * from './otp.model';
-export * from './otp-verify.model';
+export * from './verify-mqtt-otp-request.model';
