@@ -1,10 +1,10 @@
 export interface Base {
   id?: string;
-  owner: string;
+  owner?: string;
   zones?: string[];
   shares?: string[];
-  created_at: Date;
-  created_by: string;
+  created_at?: Date;
+  created_by?: string;
   updated_at?: Date;
   updated_by?: string;
   deleted_at?: Date;
