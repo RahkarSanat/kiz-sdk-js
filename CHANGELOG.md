@@ -7,12 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
-
+## 2.1.2 - 2023-06-01
 ### Added
 - find method return type in config service
 
 ### Changed
 - optional field in base interface ([issue #13](https://github.com/RahkarSanat/kiz-sdk-js/issues/13))
+
 ## 2.1.1 - 2023-05-28
 
 ## 2.1.0 - 2023-05-18
