@@ -1,33 +1,35 @@
 import { AxiosPromise, AxiosRequestConfig, CreateAxiosDefaults } from 'axios';
 import { BaseService } from '../core';
 import { Notifier, NotifierModel } from 'common';
-export class NotifierService extends BaseService<Notifier> {
+export class NotifierService extends BaseService<NotifierModel, Notifier> {
   constructor(protected readonly path: string, protected readonly options?: CreateAxiosDefaults) {
     super(path, options);
   }
 
   async byReason(
-    entity: Omit<NotifierModel, 'template_id' | 'recipient'>,
+    model: Omit<NotifierModel, 'template_id' | 'recipient'>,
     config?: AxiosRequestConfig,
   ): AxiosPromise<Notifier> {
-    return this.post(`${this.patch}/reason`, entity, {
-      config: {
+    return this.post(
+      { url: `${this.patch}/reason`, data: model },
+      {
         headers: {
           Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
         },
         ...config,
       },
-    });
+    );
   }
 
-  async byCustom(entity: NotifierModel, config?: AxiosRequestConfig): AxiosPromise<Notifier> {
-    return this.post(`${this.patch}/custom`, entity, {
-      config: {
+  async byCustom(model: NotifierModel, config?: AxiosRequestConfig): AxiosPromise<Notifier> {
+    return this.post(
+      { url: `${this.patch}/custom`, data: model },
+      {
         headers: {
           Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
         },
         ...config,
       },
-    });
+    );
   }
 }

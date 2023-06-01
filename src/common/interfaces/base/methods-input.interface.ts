@@ -29,8 +29,6 @@ export interface CommandMethodsInput<M = any> {
 
 // You can follow the above pattern to convert any `type` to `interface`
 
-export type ConfigMethodsInput = Omit<QueryMethodsInput, 'filter'>;
-
 export type UpdateById<M> = Omit<CommandMethodsInput<M>, 'entity'>;
 export type FindById = Omit<QueryMethodsInput, 'filter'>;
 export type DeleteById = Omit<CommandMethodsInput, 'entity'>;

@@ -6,3 +6,4 @@ export * from './config.model';
 export * from './profile.model';
 export * from './driver.model';
 export * from './vehicle.model';
+export * from './user.model';
