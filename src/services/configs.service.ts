@@ -30,8 +30,8 @@ export class ConfigsService extends RequestService<Config> {
     });
   }
 
-  public async find({ filter, config }: QueryMethodsInput<Config>): AxiosPromise<Config[]> {
-    return this.get<Config[]>(`${this.path}`, {
+  public async find({ filter, config }: QueryMethodsInput<Config>): AxiosPromise<{ items: Config[] }> {
+    return this.get<{ items: Config[] }>(`${this.path}`, {
       config: {
         params: filter,
         headers: {
