@@ -13,15 +13,13 @@ import {
   DriversService,
   VehiclesService,
   ProfilesService,
-  OtpService,
 } from './services';
 
 export * from './services';
 export * from './common';
 
 export class KizClient {
-  protected baseAuth?: AuthService;
-  protected optMqtt?: OtpService;
+  protected auth?: AuthService;
   protected locations?: LocationsService;
   protected users?: UsersService;
   protected profile?: ProfilesService;
@@ -60,11 +58,8 @@ export class KizClient {
     return (this.configs = this.configs ?? new ConfigsService('/configs', this.options));
   }
 
-  public get auth() {
-    const authService = (this.baseAuth = this.baseAuth ?? new AuthService('/auth', this.options));
-    const otpService = (this.optMqtt = this.optMqtt ?? new OtpService('/auth/otp', this.options));
-
-    return { authService, otpService };
+  public get authService() {
+    return (this.auth = this.auth ?? new AuthService('/auth', this.options));
   }
 
   public get transports() {

@@ -1,7 +1,7 @@
 import { AxiosPromise, AxiosRequestConfig, CreateAxiosDefaults } from 'axios';
-import { AuthDecrypt, AuthTokenReq, AuthTokenRes } from '../../common';
-import { RequestService } from '../core';
-import { AXIOS_CLIENT } from '../../common/infrastructure';
+import { AuthenticationDecrypt, AuthTokenReq, AuthTokenRes } from '../common';
+import { RequestService } from './core';
+import { AXIOS_CLIENT } from '../common/infrastructure';
 export class AuthService extends RequestService {
   constructor(protected readonly path: string, protected readonly options?: CreateAxiosDefaults) {
     super(AXIOS_CLIENT(options));
@@ -22,8 +22,8 @@ export class AuthService extends RequestService {
     });
   }
 
-  public async decrypt(config?: AxiosRequestConfig): AxiosPromise<AuthDecrypt> {
-    return this.get<AuthDecrypt>(`${this.path}/decrypt`, {
+  public async decrypt(config?: AxiosRequestConfig): AxiosPromise<AuthenticationDecrypt> {
+    return this.get<AuthenticationDecrypt>(`${this.path}/decrypt`, {
       config: {
         headers: {
           Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,

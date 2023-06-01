@@ -27,13 +27,26 @@ export interface AuthTokenReq {
   roles?: string[];
 }
 
-export interface AuthDecrypt {
+export interface AuthenticationDecrypt {
   t: 'A' | 'R';
   cid: string;
   aid?: string;
   uid?: string;
   role: string;
-  scope: string;
+  scopes: string[];
+  domain: string;
+  session: string;
+  client_id: string;
+}
+
+export interface JwtToken {
+  t: 'A' | 'R';
+  ip?: string;
+  cid: string;
+  aid?: string;
+  uid?: string;
+  roles: string;
+  scopes: string;
   domain: string;
   session: string;
   client_id: string;
