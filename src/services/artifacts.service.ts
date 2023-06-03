@@ -213,7 +213,7 @@ export class ArtifactsService extends RequestService<ArtifactModel, Artifact> {
   public async deleteOne(
     type: string,
     filter: OneFilter<ArtifactModel>,
-    { config }: { config?: AxiosRequestConfig } = {},
+    { config }: { config?: AxiosRequestConfig },
   ): AxiosPromise<Artifact> {
     return this.delete(`${this.path}/${type}/one`, {
       params: filter,
@@ -236,7 +236,7 @@ export class ArtifactsService extends RequestService<ArtifactModel, Artifact> {
   public async restoreById(
     type: string,
     id: string,
-    { config }: { config?: AxiosRequestConfig } = {},
+    { config }: { config?: AxiosRequestConfig },
   ): AxiosPromise<Artifact> {
     return this.put(
       { url: `${this.path}/${type}/${id}/restore` },
@@ -262,7 +262,7 @@ export class ArtifactsService extends RequestService<ArtifactModel, Artifact> {
   public async restoreOne(
     type: string,
     filter: OneFilter<ArtifactModel>,
-    { config }: { config?: AxiosRequestConfig } = {},
+    { config }: { config?: AxiosRequestConfig },
   ): AxiosPromise<Artifact> {
     return this.put(
       { url: `${this.path}/${type}/restore` },
@@ -289,7 +289,7 @@ export class ArtifactsService extends RequestService<ArtifactModel, Artifact> {
   public async updateBulk(
     type: string,
     entity: ArtifactModel,
-    { filter, config }: CountQueryMethodsInput<Artifact> = {},
+    { filter, config }: CountQueryMethodsInput<Artifact>,
   ): AxiosPromise<number> {
     return this.patch<number>(`${this.path}/${type}/bulk`, entity, {
       params: filter,
@@ -318,7 +318,7 @@ export class ArtifactsService extends RequestService<ArtifactModel, Artifact> {
     type: string,
     identity: string,
     metadata: ArtifactMetadata,
-    { config }: { config?: AxiosRequestConfig } = {},
+    { config }: { config?: AxiosRequestConfig },
   ): AxiosPromise<Artifact> {
     return this.patch(`${this.path}/${type}/${identity}/metadata`, metadata, {
       headers: {
