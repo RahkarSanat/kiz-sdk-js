@@ -14,7 +14,7 @@ export class BaseService<M, I> extends RequestService<M, I> {
     super(AXIOS_CLIENT(options));
   }
 
-  public async count({ filter, config }: CountQueryMethodsInput<M>): AxiosPromise<number> {
+  public async count({ filter, config }: CountQueryMethodsInput<M> = {}): AxiosPromise<number> {
     return this.get<number>(`${this.path}/count`, {
       params: filter,
       headers: {
@@ -24,7 +24,7 @@ export class BaseService<M, I> extends RequestService<M, I> {
     });
   }
 
-  public async create(model: M, { config }: { config?: AxiosRequestConfig }): AxiosPromise<I> {
+  public async create(model: M, { config }: { config?: AxiosRequestConfig } = {}): AxiosPromise<I> {
     return this.post(
       { url: this.path, data: model },
       {
@@ -36,7 +36,7 @@ export class BaseService<M, I> extends RequestService<M, I> {
     );
   }
 
-  public async find({ filter, config }: QueryMethodsInput<M>): AxiosPromise<Items<I>> {
+  public async find({ filter, config }: QueryMethodsInput<M> = {}): AxiosPromise<Items<I>> {
     return this.get<Items<I>>(this.path, {
       params: filter,
       headers: {
@@ -46,7 +46,7 @@ export class BaseService<M, I> extends RequestService<M, I> {
     });
   }
 
-  public async findById(id: string, { config }: { config?: AxiosRequestConfig }): AxiosPromise<I> {
+  public async findById(id: string, { config }: { config?: AxiosRequestConfig } = {}): AxiosPromise<I> {
     return this.get(`${this.path}/${id}`, {
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
@@ -55,7 +55,10 @@ export class BaseService<M, I> extends RequestService<M, I> {
     });
   }
 
-  public async findOne(filter: OneFilter<M>, { config }: { config?: AxiosRequestConfig }): AxiosPromise<I> {
+  public async findOne(
+    filter: OneFilter<M>,
+    { config }: { config?: AxiosRequestConfig } = {},
+  ): AxiosPromise<I> {
     return this.get(`${this.path}/one`, {
       params: filter,
       headers: {
@@ -68,7 +71,7 @@ export class BaseService<M, I> extends RequestService<M, I> {
   public async updateById(
     id: string,
     model: M,
-    { config }: { config?: AxiosRequestConfig },
+    { config }: { config?: AxiosRequestConfig } = {},
   ): AxiosPromise<I> {
     return this.patch(`${this.path}/${id}`, model, {
       headers: {
@@ -81,7 +84,7 @@ export class BaseService<M, I> extends RequestService<M, I> {
   public async updateOne(
     model: M,
     filter: OneFilter<M>,
-    { config }: { config?: AxiosRequestConfig },
+    { config }: { config?: AxiosRequestConfig } = {},
   ): AxiosPromise<I> {
     return this.patch(`${this.path}/one`, model, {
       params: filter,
@@ -92,7 +95,7 @@ export class BaseService<M, I> extends RequestService<M, I> {
     });
   }
 
-  public async deleteById(id: string, { config }: { config?: AxiosRequestConfig }): AxiosPromise<I> {
+  public async deleteById(id: string, { config }: { config?: AxiosRequestConfig } = {}): AxiosPromise<I> {
     return this.delete(`${this.path}/${id}`, {
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
@@ -101,7 +104,10 @@ export class BaseService<M, I> extends RequestService<M, I> {
     });
   }
 
-  public async deleteOne(filter: OneFilter<M>, { config }: { config?: AxiosRequestConfig }): AxiosPromise<I> {
+  public async deleteOne(
+    filter: OneFilter<M>,
+    { config }: { config?: AxiosRequestConfig } = {},
+  ): AxiosPromise<I> {
     return this.delete(`${this.path}/one`, {
       params: filter,
       headers: {
@@ -111,7 +117,7 @@ export class BaseService<M, I> extends RequestService<M, I> {
     });
   }
 
-  public async restoreById(id: string, { config }: { config?: AxiosRequestConfig }): AxiosPromise<I> {
+  public async restoreById(id: string, { config }: { config?: AxiosRequestConfig } = {}): AxiosPromise<I> {
     return this.put(
       { url: `${this.path}/${id}/restore` },
       {
@@ -125,7 +131,7 @@ export class BaseService<M, I> extends RequestService<M, I> {
 
   public async restoreOne(
     filter: OneFilter<M>,
-    { config }: { config?: AxiosRequestConfig },
+    { config }: { config?: AxiosRequestConfig } = {},
   ): AxiosPromise<I> {
     return this.put(
       { url: `${this.path}/restore/one` },
@@ -141,7 +147,7 @@ export class BaseService<M, I> extends RequestService<M, I> {
 
   public async updateBulk(
     model: M,
-    { filter, config }: CountQueryMethodsInput<number>,
+    { filter, config }: CountQueryMethodsInput<M> = {},
   ): AxiosPromise<number> {
     return this.patch<number>(`${this.path}/bulk`, model, {
       params: filter,
