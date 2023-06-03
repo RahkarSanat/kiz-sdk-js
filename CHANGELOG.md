@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 2.1.3 - 2023-06-03
+
 ## 2.1.2 - 2023-06-01
 ### Added
 - find method return type in config service
