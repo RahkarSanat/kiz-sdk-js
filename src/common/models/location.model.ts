@@ -1,10 +1,10 @@
-import { LineString, MultiLineString, MultiPoint, MultiPolygon, Point, Polygon } from 'common/types/geo.type';
+import { Geometry } from 'common/types/geo.type';
 import { BaseModel } from './base.model';
 
 export class LocationModel extends BaseModel<LocationModel> {
   type!: string;
   identity!: string;
-  geometry!: LineString | MultiLineString | MultiPoint | MultiPolygon | Point | Polygon;
+  geometry!: Geometry;
   vehicleId?: number;
   properties?: Record<string, unknown>;
 }
