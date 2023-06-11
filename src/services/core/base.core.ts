@@ -1,5 +1,11 @@
 import { AxiosPromise, AxiosRequestConfig, CreateAxiosDefaults } from 'axios';
-import { CountQueryMethodsInput, Items, OneFilter, QueryMethodsInput } from '../../common';
+import {
+  CountQueryMethodsInput,
+  Items,
+  OneFilter,
+  OneQueryMethodsInput,
+  QueryMethodsInput,
+} from '../../common';
 import { RequestService } from './request.core';
 import { AXIOS_CLIENT } from '../../common/infrastructure';
 
@@ -46,8 +52,9 @@ export class BaseService<M, I> extends RequestService<M, I> {
     });
   }
 
-  public async findById(id: string, { config }: { config?: AxiosRequestConfig } = {}): AxiosPromise<I> {
+  public async findById(id: string, { filter, config }: OneQueryMethodsInput<M> = {}): AxiosPromise<I> {
     return this.get(`${this.path}/${id}`, {
+      params: filter,
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
       },
@@ -71,9 +78,10 @@ export class BaseService<M, I> extends RequestService<M, I> {
   public async updateById(
     id: string,
     model: M,
-    { config }: { config?: AxiosRequestConfig } = {},
+    { filter, config }: OneQueryMethodsInput<M> = {},
   ): AxiosPromise<I> {
     return this.patch(`${this.path}/${id}`, model, {
+      params: filter,
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
       },
@@ -95,8 +103,9 @@ export class BaseService<M, I> extends RequestService<M, I> {
     });
   }
 
-  public async deleteById(id: string, { config }: { config?: AxiosRequestConfig } = {}): AxiosPromise<I> {
+  public async deleteById(id: string, { filter, config }: OneQueryMethodsInput<M> = {}): AxiosPromise<I> {
     return this.delete(`${this.path}/${id}`, {
+      params: filter,
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
       },
@@ -117,10 +126,11 @@ export class BaseService<M, I> extends RequestService<M, I> {
     });
   }
 
-  public async restoreById(id: string, { config }: { config?: AxiosRequestConfig } = {}): AxiosPromise<I> {
+  public async restoreById(id: string, { filter, config }: OneQueryMethodsInput<M> = {}): AxiosPromise<I> {
     return this.put(
       { url: `${this.path}/${id}/restore` },
       {
+        params: filter,
         headers: {
           Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
         },
