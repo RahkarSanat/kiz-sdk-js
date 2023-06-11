@@ -7,6 +7,7 @@ import {
   ArtifactModel,
   OneFilter,
   Items,
+  OneQueryMethodsInput,
 } from '../common';
 import { RequestService } from './core';
 import { AXIOS_CLIENT } from '../common/infrastructure';
@@ -94,9 +95,10 @@ export class ArtifactsService extends RequestService<ArtifactModel, Artifact> {
   public async findById(
     type: string,
     id: string,
-    { config }: { config?: AxiosRequestConfig } = {},
+    { filter, config }: OneQueryMethodsInput<ArtifactModel> = {},
   ): AxiosPromise<Artifact> {
     return this.get(`${this.path}/${type}/${id}`, {
+      params: filter,
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
       },
@@ -143,9 +145,10 @@ export class ArtifactsService extends RequestService<ArtifactModel, Artifact> {
     type: string,
     id: string,
     model: ArtifactModel,
-    { config }: { config?: AxiosRequestConfig } = {},
+    { filter, config }: OneQueryMethodsInput<ArtifactModel> = {},
   ): AxiosPromise<Artifact> {
     return this.patch(`${this.path}/${type}/${id}`, model, {
+      params: filter,
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
       },
@@ -190,9 +193,10 @@ export class ArtifactsService extends RequestService<ArtifactModel, Artifact> {
   public async deleteById(
     type: string,
     id: string,
-    { config }: { config?: AxiosRequestConfig } = {},
+    { filter, config }: OneQueryMethodsInput<ArtifactModel> = {},
   ): AxiosPromise<Artifact> {
     return this.delete(`${this.path}/${type}/${id}`, {
+      params: filter,
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
       },
@@ -237,11 +241,12 @@ export class ArtifactsService extends RequestService<ArtifactModel, Artifact> {
   public async restoreById(
     type: string,
     id: string,
-    { config }: { config?: AxiosRequestConfig },
+    { filter, config }: OneQueryMethodsInput<ArtifactModel> = {},
   ): AxiosPromise<Artifact> {
     return this.put(
       { url: `${this.path}/${type}/${id}/restore` },
       {
+        params: filter,
         headers: {
           Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
         },
