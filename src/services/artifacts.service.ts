@@ -164,11 +164,12 @@ export class ArtifactsService extends RequestService<ArtifactModel, Artifact> {
    * @returns an AxiosPromise of type Artifact.
    */
   public async updateOne(
+    type: string,
     model: ArtifactModel,
     filter: OneFilter<ArtifactModel>,
     { config }: { config?: AxiosRequestConfig } = {},
   ): AxiosPromise<Artifact> {
-    return this.patch(`${this.path}/one`, model, {
+    return this.patch(`${this.path}/${type}/one`, model, {
       params: filter,
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
