@@ -7,6 +7,7 @@ import {
   ArtifactModel,
   OneFilter,
   Items,
+  OneQueryMethodsInput,
 } from '../common';
 import { RequestService } from './core';
 import { AXIOS_CLIENT } from '../common/infrastructure';
@@ -94,9 +95,10 @@ export class ArtifactsService extends RequestService<ArtifactModel, Artifact> {
   public async findById(
     type: string,
     id: string,
-    { config }: { config?: AxiosRequestConfig } = {},
+    { filter, config }: OneQueryMethodsInput<ArtifactModel> = {},
   ): AxiosPromise<Artifact> {
     return this.get(`${this.path}/${type}/${id}`, {
+      params: filter,
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
       },
@@ -143,9 +145,10 @@ export class ArtifactsService extends RequestService<ArtifactModel, Artifact> {
     type: string,
     id: string,
     model: ArtifactModel,
-    { config }: { config?: AxiosRequestConfig } = {},
+    { filter, config }: OneQueryMethodsInput<ArtifactModel> = {},
   ): AxiosPromise<Artifact> {
     return this.patch(`${this.path}/${type}/${id}`, model, {
+      params: filter,
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
       },
@@ -164,11 +167,12 @@ export class ArtifactsService extends RequestService<ArtifactModel, Artifact> {
    * @returns an AxiosPromise of type Artifact.
    */
   public async updateOne(
+    type: string,
     model: ArtifactModel,
     filter: OneFilter<ArtifactModel>,
     { config }: { config?: AxiosRequestConfig } = {},
   ): AxiosPromise<Artifact> {
-    return this.patch(`${this.path}/one`, model, {
+    return this.patch(`${this.path}/${type}/one`, model, {
       params: filter,
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
@@ -189,9 +193,10 @@ export class ArtifactsService extends RequestService<ArtifactModel, Artifact> {
   public async deleteById(
     type: string,
     id: string,
-    { config }: { config?: AxiosRequestConfig } = {},
+    { filter, config }: OneQueryMethodsInput<ArtifactModel> = {},
   ): AxiosPromise<Artifact> {
     return this.delete(`${this.path}/${type}/${id}`, {
+      params: filter,
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
       },
@@ -213,7 +218,7 @@ export class ArtifactsService extends RequestService<ArtifactModel, Artifact> {
   public async deleteOne(
     type: string,
     filter: OneFilter<ArtifactModel>,
-    { config }: { config?: AxiosRequestConfig } = {},
+    { config }: { config?: AxiosRequestConfig },
   ): AxiosPromise<Artifact> {
     return this.delete(`${this.path}/${type}/one`, {
       params: filter,
@@ -236,11 +241,12 @@ export class ArtifactsService extends RequestService<ArtifactModel, Artifact> {
   public async restoreById(
     type: string,
     id: string,
-    { config }: { config?: AxiosRequestConfig } = {},
+    { filter, config }: OneQueryMethodsInput<ArtifactModel> = {},
   ): AxiosPromise<Artifact> {
     return this.put(
       { url: `${this.path}/${type}/${id}/restore` },
       {
+        params: filter,
         headers: {
           Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
         },
@@ -262,7 +268,7 @@ export class ArtifactsService extends RequestService<ArtifactModel, Artifact> {
   public async restoreOne(
     type: string,
     filter: OneFilter<ArtifactModel>,
-    { config }: { config?: AxiosRequestConfig } = {},
+    { config }: { config?: AxiosRequestConfig },
   ): AxiosPromise<Artifact> {
     return this.put(
       { url: `${this.path}/${type}/restore` },
@@ -289,7 +295,7 @@ export class ArtifactsService extends RequestService<ArtifactModel, Artifact> {
   public async updateBulk(
     type: string,
     entity: ArtifactModel,
-    { filter, config }: CountQueryMethodsInput<Artifact> = {},
+    { filter, config }: CountQueryMethodsInput<Artifact>,
   ): AxiosPromise<number> {
     return this.patch<number>(`${this.path}/${type}/bulk`, entity, {
       params: filter,
@@ -318,7 +324,7 @@ export class ArtifactsService extends RequestService<ArtifactModel, Artifact> {
     type: string,
     identity: string,
     metadata: ArtifactMetadata,
-    { config }: { config?: AxiosRequestConfig } = {},
+    { config }: { config?: AxiosRequestConfig },
   ): AxiosPromise<Artifact> {
     return this.patch(`${this.path}/${type}/${identity}/metadata`, metadata, {
       headers: {

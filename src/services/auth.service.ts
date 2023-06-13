@@ -11,7 +11,7 @@ export class AuthService extends RequestService<any, any> {
 
   public async token(
     auth: AuthTokenReq,
-    { config }: { config?: AxiosRequestConfig },
+    { config }: { config?: AxiosRequestConfig } = {},
   ): AxiosPromise<AuthTokenRes> {
     return this.post({ url: `${this.path}/token`, data: auth }, config);
   }
