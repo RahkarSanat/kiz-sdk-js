@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+- models and interfaces folder structure
+
+### Fixed
+- models and interfaces of logistics transports (driver, vehicle, violation)
+
 ## 2.1.4 - 2023-06-13
 ### Changed
 - logistic types (geoJSON)
