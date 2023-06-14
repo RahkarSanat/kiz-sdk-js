@@ -1,4 +1,5 @@
-import { BaseModel } from './base.model';
+import { BaseModel } from '../base.model';
+import { ViolationModel } from './violation.model';
 
 export class VehicleModel extends BaseModel<VehicleModel> {
   type?: string;
@@ -6,4 +7,5 @@ export class VehicleModel extends BaseModel<VehicleModel> {
   model?: string;
   year?: number;
   drivers?: string[];
+  violations?: ViolationModel[];
 }
