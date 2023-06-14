@@ -8,12 +8,13 @@ export interface AuthTokenRes {
   session?: string;
   scope?: string;
   code?: string;
+  subjects?: string[];
+  uid?: string;
 }
 
 export interface AuthTokenReq {
   grant_type: GrantType;
   app_id: string;
-  domain: string;
   client_id: string;
   client_secret: string;
   phone?: string;
@@ -24,7 +25,7 @@ export interface AuthTokenReq {
   refresh_token?: string;
   scope?: string[];
   code?: string;
-  roles?: string[];
+  subjects?: string[];
 }
 
 export interface AuthenticationDecrypt {
@@ -32,9 +33,8 @@ export interface AuthenticationDecrypt {
   cid: string;
   aid?: string;
   uid?: string;
-  role: string;
+  subjects: string;
   scopes: string[];
-  domain: string;
   session: string;
   client_id: string;
 }
@@ -45,9 +45,8 @@ export interface JwtToken {
   cid: string;
   aid?: string;
   uid?: string;
-  roles: string;
+  subjects: string;
   scopes: string;
-  domain: string;
   session: string;
   client_id: string;
 }
