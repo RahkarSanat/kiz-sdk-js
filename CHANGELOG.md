@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 2.1.6 - 2023-06-14
 ### Fixed
 - vehicles interfaces driver type (to be string array)
 
