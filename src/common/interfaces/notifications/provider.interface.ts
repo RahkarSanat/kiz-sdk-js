@@ -1,4 +1,4 @@
-import { ProviderName } from 'common/enums';
+import { ProviderName } from '../../enums';
 import { Base } from '../base';
 
 export interface FcmConfigs {

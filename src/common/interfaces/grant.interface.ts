@@ -1,4 +1,4 @@
-import { Action } from 'common/enums/action.enum';
+import { Action } from '../enums/action.enum';
 import { Base } from './base';
 
 export interface Grant extends Base {

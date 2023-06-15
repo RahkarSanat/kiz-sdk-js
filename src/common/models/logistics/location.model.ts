@@ -1,4 +1,4 @@
-import { Geometry } from 'common/types/geo.type';
+import { Geometry } from '../../types';
 import { BaseModel } from '../base.model';
 
 export class LocationModel extends BaseModel<LocationModel> {

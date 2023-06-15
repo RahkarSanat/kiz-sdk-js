@@ -1,4 +1,4 @@
-import { Gender, UserType } from 'common/enums';
+import { Gender, UserType } from '../enums';
 import { Base } from './base';
 
 export interface Profile extends Base {

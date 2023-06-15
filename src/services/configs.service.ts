@@ -1,4 +1,4 @@
-import { Config, ConfigModel } from 'common';
+import { Config, ConfigModel } from '../common';
 import { BaseService } from './core';
 import { CreateAxiosDefaults } from 'axios';
 

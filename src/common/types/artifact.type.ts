@@ -1,5 +1,5 @@
-import { Artifact } from 'common/interfaces';
-import { ArtifactModel } from 'common/models';
+import { Artifact } from '../interfaces';
+import { ArtifactModel } from '../models';
 
 export type ArtifactMetadata = Pick<Artifact, 'metadata'>;
 

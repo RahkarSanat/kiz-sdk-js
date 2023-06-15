@@ -1,4 +1,4 @@
-import { ProviderName } from 'common/enums';
+import { ProviderName } from '../../enums';
 import { BaseModel } from '../base.model';
 import { FcmConfigs, MailConfigs, SmsConfigs, SocketConfigs } from './subs';
 

@@ -1,5 +1,5 @@
 import { AxiosError, AxiosInstance, AxiosPromise, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { AxiosErrorLog, Items } from 'common';
+import { AxiosErrorLog, Items } from '../../common';
 
 export interface RequestOptions {
   client: AxiosInstance;

@@ -1,4 +1,4 @@
-import { Gender, UserType } from 'common/enums';
+import { Gender, UserType } from '../enums';
 import { BaseModel } from './base.model';
 
 export class ProfileModel extends BaseModel<ProfileModel> {

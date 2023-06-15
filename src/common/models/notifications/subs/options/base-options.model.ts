@@ -1,4 +1,4 @@
-import { NestedBaseModel } from 'common/models/nested-base.model';
+import { NestedBaseModel } from '../../../nested-base.model';
 
 export class Options extends NestedBaseModel {
   provider_id!: string;
