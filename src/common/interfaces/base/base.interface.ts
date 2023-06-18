@@ -12,4 +12,5 @@ export interface Base {
   restored_at?: Date;
   restored_by?: string;
   tags?: string[];
+  metadata?: Record<string, any>;
 }

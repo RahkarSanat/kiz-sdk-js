@@ -12,6 +12,7 @@ export class BaseModel<T> {
   restored_by?: string;
   version?: string;
   tags?: string[];
+  metadata?: Record<string, any>;
 
   constructor(data?: Partial<T>) {
     if (data) Object.assign(this, data);
