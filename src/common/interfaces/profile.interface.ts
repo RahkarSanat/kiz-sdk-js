@@ -1,7 +1,7 @@
 import { Gender, UserType } from '../enums';
 import { Base } from './base';
 
-export interface Profile extends Base {
+export interface Profile<Meta = Record<string, unknown>> extends Base<Meta> {
   type: UserType;
   first_name?: string;
   last_name?: string;

@@ -1,4 +1,4 @@
-export class BaseModel<T> {
+export class BaseModel<T, Meta = Record<string, unknown>> {
   id?: string;
   owner?: string;
   shares?: string[];
@@ -12,7 +12,7 @@ export class BaseModel<T> {
   restored_by?: string;
   version?: string;
   tags?: string[];
-  metadata?: Record<string, any>;
+  metadata?: Meta;
 
   constructor(data?: Partial<T>) {
     if (data) Object.assign(this, data);

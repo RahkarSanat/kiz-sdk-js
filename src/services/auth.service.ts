@@ -4,7 +4,7 @@ import { RequestService } from './core';
 import { AXIOS_CLIENT } from '../common/infrastructure';
 
 // TODO: fix types
-export class AuthService extends RequestService<any, any> {
+export class AuthService extends RequestService {
   constructor(protected readonly path: string, protected readonly options?: CreateAxiosDefaults) {
     super(AXIOS_CLIENT(options));
   }
@@ -17,7 +17,7 @@ export class AuthService extends RequestService<any, any> {
   }
 
   public async logout(config?: AxiosRequestConfig): AxiosPromise<boolean> {
-    return this.get<boolean>(`${this.path}/logout`, {
+    return this.get(`${this.path}/logout`, {
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
       },

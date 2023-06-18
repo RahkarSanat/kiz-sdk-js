@@ -1,7 +1,7 @@
 import { Action } from '../enums/action.enum';
 import { Base } from './base';
 
-export interface Grant extends Base {
+export interface Grant<Meta = Record<string, unknown>> extends Base<Meta> {
   subject: string;
   action: Action;
   object: string;

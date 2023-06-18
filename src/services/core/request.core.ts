@@ -1,69 +1,42 @@
-import { AxiosError, AxiosInstance, AxiosPromise, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { AxiosErrorLog, Items } from '../../common';
+import {
+  AxiosInstance,
+  AxiosPromise,
+  AxiosRequestConfig,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from 'axios';
+import * as AxiosLogger from 'axios-logger';
 
 export interface RequestOptions {
   client: AxiosInstance;
 }
 
-/**
- *
- * The RequestService class is a generic class that handles requests with a model and an interface.
- *
- * @param M Model, that we use since we do nt have DTO. use to handle request
- * @param I Interface, use to handle response
- * @param C custom type that shall be one of the allowed types, NOT any, unknown, never, object
- *
- */
-export class RequestService<M, I> {
+export class RequestService {
   protected client: AxiosInstance;
 
   constructor(options: RequestOptions) {
     this.client = options.client;
-    options.client.interceptors.response.use(
-      (response) => response,
-      (err) => {
-        const customLogger = (options.client.defaults as unknown as { errorLogger: AxiosErrorLog })
-          ?.errorLogger;
-        return customLogger
-          ? customLogger(err)
-          : new AxiosError(err?.response?.data.message, err?.response?.data.statusCode);
-      },
-    );
+    options.client.interceptors.request.use((internalRequest: InternalAxiosRequestConfig) => {
+      const headers = internalRequest.headers;
+      const request: AxiosRequestConfig = {
+        ...internalRequest,
+      };
+      const logRequest = AxiosLogger.requestLogger(request);
+      internalRequest = {
+        ...logRequest,
+        ...{ headers: headers },
+      };
+      return internalRequest;
+    }, AxiosLogger.errorLogger);
+    options.client.interceptors.response.use(AxiosLogger.responseLogger, AxiosLogger.errorLogger);
   }
 
-  /**
-   * This is a protected async function that sends a GET request using Axios and returns a promise with
-   * the specified type.
-   * @param {string} url - A string representing the URL to which the HTTP GET request will be sent.
-   * @param {AxiosRequestConfig} config - config is an optional parameter of type AxiosRequestConfig
-   * which is an interface that defines the configuration options for an Axios request. It includes
-   * properties such as headers, params, data, timeout, and more. These options can be used to customize
-   * the behavior of the HTTP request being made.
-   * @returns The `get` method is returning an `AxiosPromise` with a generic type `C`, which can be
-   * either an `I` object, an array of `I` objects (`Items<I>`), or a number, or a boolean. The method sends a GET
-   * request to the specified `url` with the provided `config` options using the Axios HTTP client.
-   */
-  protected async get<C extends I | Items<I> | number | boolean>(
-    url: string,
-    config?: AxiosRequestConfig,
-  ): AxiosPromise<C> {
-    return this.client.get<C>(url, config);
+  protected async get<Res>(url: string, config?: AxiosRequestConfig): AxiosPromise<Res> {
+    return this.client.get<Res>(url, config);
   }
 
-  /**
-   * This is a function that sends a DELETE request using Axios and returns a Promise
-   * containing the response data.
-   * @param {string} url - The URL of the resource that needs to be deleted.
-   * @param {AxiosRequestConfig} config - The `config` parameter is an optional object that can be passed
-   * to the `delete` method of an Axios instance. It contains various configuration options that can be
-   * used to customize the HTTP request, such as headers, query parameters, request body, authentication
-   * credentials, timeout, and response type. The `
-   * @returns The `delete` method is returning a promise that resolves to an `AxiosResponse` object with
-   * a generic type `I`. The response object contains information about the HTTP response such as status
-   * code, headers, and data.
-   */
-  protected async delete(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<I>> {
-    return await this.client.delete<I>(url, config);
+  protected async delete<Res>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<Res>> {
+    return await this.client.delete<Res>(url, config);
   }
 
   /**
@@ -80,12 +53,12 @@ export class RequestService<M, I> {
    * @returns a Promise that resolves to an AxiosResponse object with a generic type parameter C, which
    * can be either an object of type I or a number.
    */
-  protected async patch<C extends I | number>(
+  protected async patch<Res, Req>(
     url: string,
-    data: Partial<M>,
+    data: Req,
     config?: AxiosRequestConfig,
-  ): Promise<AxiosResponse<C>> {
-    return await this.client.patch<C>(url, data, config);
+  ): Promise<AxiosResponse<Res>> {
+    return await this.client.patch<Res, AxiosResponse<Res>, Req>(url, data, config);
   }
 
   /**
@@ -100,11 +73,11 @@ export class RequestService<M, I> {
    * generic type `I`. The `AxiosResponse` object contains the response data, status code, headers, and
    * other information related to the HTTP response.
    */
-  protected async post(
-    { url, data }: { url: string; data?: M },
+  protected async post<Res, Req>(
+    { url, data }: { url: string; data?: Req },
     config?: AxiosRequestConfig,
-  ): Promise<AxiosResponse<I>> {
-    return await this.client.post<I>(url, data, config);
+  ): Promise<AxiosResponse<Res>> {
+    return await this.client.post<Res>(url, data, config);
   }
 
   /**
@@ -117,10 +90,10 @@ export class RequestService<M, I> {
    * @returns The `put` method is returning a Promise that resolves to an `AxiosResponse` object with a
    * generic type `I`.
    */
-  protected async put(
-    { url, data }: { url: string; data?: Partial<M> },
+  protected async put<Res, Req = never>(
+    { url, data }: { url: string; data?: Partial<Req> },
     config?: AxiosRequestConfig,
-  ): Promise<AxiosResponse<I>> {
-    return await this.client.put<I>(url, data, config);
+  ): Promise<AxiosResponse<Res>> {
+    return await this.client.put<Res>(url, data, config);
   }
 }

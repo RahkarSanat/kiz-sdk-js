@@ -1,7 +1,7 @@
 import { Resource } from '../../enums';
 import { Base } from '../base';
 
-export interface Notifier extends Base {
+export interface Notifier<Meta = Record<string, unknown>> extends Base<Meta> {
   resource: Resource;
   reason: string;
   template_id?: string;
@@ -10,7 +10,6 @@ export interface Notifier extends Base {
   ttl?: number;
   seen?: Record<string, boolean>;
   status?: Record<string, unknown>;
-  metadata?: Record<string, unknown>;
 }
 
 export interface RecipientNotifier {

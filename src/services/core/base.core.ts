@@ -15,13 +15,13 @@ import { AXIOS_CLIENT } from '../../common/infrastructure';
  * I => Interface, use to handle response
  *
  */
-export class BaseService<M, I> extends RequestService<M, I> {
+export class BaseService<M, I> extends RequestService {
   constructor(protected readonly path: string, protected readonly options?: CreateAxiosDefaults) {
     super(AXIOS_CLIENT(options));
   }
 
   public async count({ filter, config }: CountQueryMethodsInput<M> = {}): AxiosPromise<number> {
-    return this.get<number>(`${this.path}/count`, {
+    return this.get(`${this.path}/count`, {
       params: filter,
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
@@ -43,7 +43,7 @@ export class BaseService<M, I> extends RequestService<M, I> {
   }
 
   public async find({ filter, config }: QueryMethodsInput<M> = {}): AxiosPromise<Items<I>> {
-    return this.get<Items<I>>(this.path, {
+    return this.get(this.path, {
       params: filter,
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
@@ -127,7 +127,7 @@ export class BaseService<M, I> extends RequestService<M, I> {
   }
 
   public async restoreById(id: string, { filter, config }: OneQueryMethodsInput<M> = {}): AxiosPromise<I> {
-    return this.put(
+    return this.put<I, never>(
       { url: `${this.path}/${id}/restore` },
       {
         params: filter,
@@ -143,7 +143,7 @@ export class BaseService<M, I> extends RequestService<M, I> {
     filter: OneFilter<M>,
     { config }: { config?: AxiosRequestConfig } = {},
   ): AxiosPromise<I> {
-    return this.put(
+    return this.put<I, never>(
       { url: `${this.path}/restore/one` },
       {
         params: filter,
@@ -159,7 +159,7 @@ export class BaseService<M, I> extends RequestService<M, I> {
     model: M,
     { filter, config }: CountQueryMethodsInput<M> = {},
   ): AxiosPromise<number> {
-    return this.patch<number>(`${this.path}/bulk`, model, {
+    return this.patch(`${this.path}/bulk`, model, {
       params: filter,
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,

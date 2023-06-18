@@ -29,7 +29,7 @@ export interface SocketOptions extends Options {
   indicator?: string;
 }
 
-export interface Template extends Base {
+export interface Template<Meta = Record<string, unknown>> extends Base<Meta> {
   name: string;
   description?: string;
   reason: string;

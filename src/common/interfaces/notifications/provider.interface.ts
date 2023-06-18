@@ -32,7 +32,7 @@ export interface SocketConfigs {
   [key: string]: string;
 }
 
-export interface Provider extends Base {
+export interface Provider<Meta = Record<string, unknown>> extends Base<Meta> {
   name: ProviderName;
   description?: string;
   active?: boolean;

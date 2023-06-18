@@ -1,7 +1,7 @@
 import { Base } from './base';
 
-export interface Artifact extends Base {
+export interface Artifact<Meta> extends Base<Meta> {
   identity: string;
   type: string;
-  metadata: Record<string, unknown>;
+  metadata: Meta;
 }
