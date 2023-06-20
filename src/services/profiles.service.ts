@@ -1,9 +1,9 @@
 import { CreateAxiosDefaults } from 'axios';
-import { Profile, ProfileModel } from '../common';
+import { Profile, ProfileModel, ServiceOption } from '../common';
 import { BaseService } from './core';
 
 export class ProfilesService extends BaseService<ProfileModel, Profile> {
-  constructor(protected readonly path: string, protected readonly options?: CreateAxiosDefaults) {
+  constructor(protected readonly path: string, protected readonly options?: ServiceOption) {
     super(path, options);
   }
 }

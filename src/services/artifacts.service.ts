@@ -7,12 +7,13 @@ import {
   OneFilter,
   Items,
   OneQueryMethodsInput,
+  ServiceOption,
 } from '../common';
 import { RequestService } from './core';
 import { AXIOS_CLIENT } from '../common/infrastructure';
 
 export class ArtifactsService extends RequestService {
-  constructor(protected readonly path: string, protected readonly options?: CreateAxiosDefaults) {
+  constructor(protected readonly path: string, protected readonly options?: ServiceOption) {
     super(AXIOS_CLIENT(options));
   }
 

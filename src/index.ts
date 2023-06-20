@@ -14,6 +14,7 @@ import {
   VehiclesService,
   ProfilesService,
 } from './services';
+import { ServiceOption } from './common';
 
 export * from './services';
 export * from './common';
@@ -33,7 +34,7 @@ export class KizClient {
   protected drivers?: DriversService;
   protected vehicles?: VehiclesService;
 
-  constructor(protected readonly options?: CreateAxiosDefaults) {}
+  constructor(protected readonly options?: ServiceOption) {}
 
   public get locationService() {
     return (this.locations = this.locations ?? new LocationsService('/locations', this.options));
