@@ -1,6 +1,6 @@
 {
   "name": "@rahkarsanat/kiz-sdk",
-  "version": "2.1.7",
+  "version": "2.2.0",
   "description": "kiz platform sdk",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
