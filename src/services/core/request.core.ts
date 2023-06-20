@@ -16,19 +16,6 @@ export class RequestService {
 
   constructor(options: RequestOptions) {
     this.client = options.client;
-    options.client.interceptors.request.use((internalRequest: InternalAxiosRequestConfig) => {
-      const headers = internalRequest.headers;
-      const request: AxiosRequestConfig = {
-        ...internalRequest,
-      };
-      const logRequest = AxiosLogger.requestLogger(request);
-      internalRequest = {
-        ...logRequest,
-        ...{ headers: headers },
-      };
-      return internalRequest;
-    }, AxiosLogger.errorLogger);
-    options.client.interceptors.response.use(AxiosLogger.responseLogger, AxiosLogger.errorLogger);
   }
 
   protected async get<Res>(url: string, config?: AxiosRequestConfig): AxiosPromise<Res> {
@@ -90,7 +77,7 @@ export class RequestService {
    * @returns The `put` method is returning a Promise that resolves to an `AxiosResponse` object with a
    * generic type `I`.
    */
-  protected async put<Res, Req = never>(
+  protected async put<Res, Req>(
     { url, data }: { url: string; data?: Partial<Req> },
     config?: AxiosRequestConfig,
   ): Promise<AxiosResponse<Res>> {

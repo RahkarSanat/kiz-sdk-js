@@ -127,7 +127,7 @@ export class BaseService<M, I> extends RequestService {
   }
 
   public async restoreById(id: string, { filter, config }: OneQueryMethodsInput<M> = {}): AxiosPromise<I> {
-    return this.put<I, never>(
+    return this.put(
       { url: `${this.path}/${id}/restore` },
       {
         params: filter,
