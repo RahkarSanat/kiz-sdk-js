@@ -12,3 +12,11 @@
 export * from './axios.util';
 export * from './exception.util';
 export * from './exception-scope.enum';
+
+/**
+ *
+ * Ready to use for outside of the SDK utilities
+ *
+ */
+
+export * from './service-option.type';

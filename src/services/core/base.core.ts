@@ -5,6 +5,7 @@ import {
   OneFilter,
   OneQueryMethodsInput,
   QueryMethodsInput,
+  ServiceOption,
 } from '../../common';
 import { RequestService } from './request.core';
 import { AXIOS_CLIENT } from '../../common/infrastructure';
@@ -16,7 +17,7 @@ import { AXIOS_CLIENT } from '../../common/infrastructure';
  *
  */
 export class BaseService<M, I> extends RequestService {
-  constructor(protected readonly path: string, protected readonly options?: CreateAxiosDefaults) {
+  constructor(protected readonly path: string, protected readonly options?: ServiceOption) {
     super(AXIOS_CLIENT(options));
   }
 

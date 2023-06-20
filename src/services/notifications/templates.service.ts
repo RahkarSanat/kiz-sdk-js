@@ -1,8 +1,8 @@
 import { CreateAxiosDefaults } from 'axios';
 import { BaseService } from '../core';
-import { Template, TemplateModel } from '../../common';
+import { ServiceOption, Template, TemplateModel } from '../../common';
 export class TemplatesService extends BaseService<TemplateModel, Template> {
-  constructor(protected readonly path: string, protected readonly options?: CreateAxiosDefaults) {
+  constructor(protected readonly path: string, protected readonly options?: ServiceOption) {
     super(path, options);
   }
 }
