@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+- Add all GeoJSON types
+- Count type
+
+### Fixed
+- unused package
+- bad imports
+
+
+
+
 ## 2.2.1 - 2023-06-21
 ### Fixed
 - Access Token type for decrypt usage
