@@ -1,5 +1,5 @@
-import { CreateAxiosDefaults } from 'axios';
-import { Grant, GrantModel, ServiceOption } from '../common';
+import { ServiceOption } from 'common/infrastructure';
+import { Grant, GrantModel } from '../common';
 import { BaseService } from './core';
 
 export class GrantsService extends BaseService<GrantModel, Grant> {

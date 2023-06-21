@@ -1,4 +1,4 @@
-import { AxiosPromise, AxiosRequestConfig, CreateAxiosDefaults } from 'axios';
+import { AxiosPromise, AxiosRequestConfig } from 'axios';
 import {
   Artifact,
   CountQueryMethodsInput,
@@ -7,10 +7,10 @@ import {
   OneFilter,
   Items,
   OneQueryMethodsInput,
-  ServiceOption,
+  Count,
 } from '../common';
 import { RequestService } from './core';
-import { AXIOS_CLIENT } from '../common/infrastructure';
+import { AXIOS_CLIENT, ServiceOption } from '../common/infrastructure';
 
 export class ArtifactsService extends RequestService {
   constructor(protected readonly path: string, protected readonly options?: ServiceOption) {
@@ -20,7 +20,7 @@ export class ArtifactsService extends RequestService {
   public async count<Meta>(
     type: string,
     { filter, config }: CountQueryMethodsInput<ArtifactModel<Meta>> = {},
-  ): AxiosPromise<number> {
+  ): AxiosPromise<Count> {
     return this.get(`${this.path}/${type}/count`, {
       params: filter,
       headers: {

@@ -1,7 +1,7 @@
 import { AxiosPromise, AxiosRequestConfig } from 'axios';
-import { AccessTokenObject, AuthTokenReq, AuthTokenRes, ServiceOption } from '../common';
+import { AccessTokenObject, AuthTokenReq, AuthTokenRes } from '../common';
 import { RequestService } from './core';
-import { AXIOS_CLIENT } from '../common/infrastructure';
+import { AXIOS_CLIENT, ServiceOption } from '../common/infrastructure';
 
 // TODO: fix types
 export class AuthService extends RequestService {

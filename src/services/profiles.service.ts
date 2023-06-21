@@ -1,5 +1,5 @@
-import { CreateAxiosDefaults } from 'axios';
-import { Profile, ProfileModel, ServiceOption } from '../common';
+import { ServiceOption } from 'common/infrastructure';
+import { Profile, ProfileModel } from '../common';
 import { BaseService } from './core';
 
 export class ProfilesService extends BaseService<ProfileModel, Profile> {

@@ -1,4 +1,3 @@
-import { CreateAxiosDefaults } from 'axios';
 import {
   AuthService,
   LocationsService,
@@ -14,7 +13,7 @@ import {
   VehiclesService,
   ProfilesService,
 } from './services';
-import { ServiceOption } from './common';
+import { ServiceOption } from 'common/infrastructure';
 
 export * from './services';
 export * from './common';

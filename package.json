@@ -36,6 +36,7 @@
   "homepage": "https://github.com/RahkarSanat/kiz-sdk-js#readme",
   "devDependencies": {
     "@types/jest": "^29.4.0",
+    "@types/long": "^5.0.0",
     "@typescript-eslint/eslint-plugin": "^5.51.0",
     "@typescript-eslint/parser": "^5.51.0",
     "dotenv": "^16.0.3",

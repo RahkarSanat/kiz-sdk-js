@@ -1,5 +1,5 @@
-import { CreateAxiosDefaults } from 'axios';
-import { ServiceOption, Vehicle, VehicleModel } from '../common';
+import { ServiceOption } from 'common/infrastructure';
+import { Vehicle, VehicleModel } from '../common';
 import { BaseService } from './core';
 
 export class VehiclesService extends BaseService<VehicleModel, Vehicle> {

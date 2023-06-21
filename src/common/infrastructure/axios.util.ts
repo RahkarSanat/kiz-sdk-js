@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Exceptioner } from './exception.util';
 import { ExceptionScope } from './exception-scope.enum';
-import { ServiceOption } from 'common/interfaces';
+import { ServiceOption } from './service-option.type';
 
 export const AXIOS_CLIENT = (options?: ServiceOption) => {
   if (!options)

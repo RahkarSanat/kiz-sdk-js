@@ -1,6 +1,7 @@
-import { AxiosPromise, AxiosRequestConfig, CreateAxiosDefaults } from 'axios';
+import { AxiosPromise, AxiosRequestConfig } from 'axios';
 import { BaseService } from '../core';
-import { Notifier, NotifierModel, ServiceOption } from '../../common';
+import { Notifier, NotifierModel } from '../../common';
+import { ServiceOption } from 'common/infrastructure';
 export class NotifierService extends BaseService<NotifierModel, Notifier> {
   constructor(protected readonly path: string, protected readonly options?: ServiceOption) {
     super(path, options);

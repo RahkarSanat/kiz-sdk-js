@@ -1,3 +1,4 @@
+import type Long from 'long';
 import { GrantType } from '../../enums';
 
 export interface AuthTokenRes {
@@ -31,6 +32,7 @@ export interface AuthTokenReq {
 /**
  * for decrypt usage
  */
+
 export interface AccessTokenObject {
   cid: string;
   aid?: string;
@@ -40,8 +42,8 @@ export interface AccessTokenObject {
   session: string;
   client_id: string;
 
-  iat?: number;
-  exp?: number;
+  iat?: Long;
+  exp?: Long;
 }
 
 export interface JwtToken {

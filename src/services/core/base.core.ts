@@ -1,14 +1,14 @@
-import { AxiosPromise, AxiosRequestConfig, CreateAxiosDefaults } from 'axios';
+import { AxiosPromise, AxiosRequestConfig } from 'axios';
 import {
+  Count,
   CountQueryMethodsInput,
   Items,
   OneFilter,
   OneQueryMethodsInput,
   QueryMethodsInput,
-  ServiceOption,
 } from '../../common';
 import { RequestService } from './request.core';
-import { AXIOS_CLIENT } from '../../common/infrastructure';
+import { AXIOS_CLIENT, ServiceOption } from '../../common/infrastructure';
 
 /**
  *
@@ -21,7 +21,7 @@ export class BaseService<M, I> extends RequestService {
     super(AXIOS_CLIENT(options));
   }
 
-  public async count({ filter, config }: CountQueryMethodsInput<M> = {}): AxiosPromise<number> {
+  public async count({ filter, config }: CountQueryMethodsInput<M> = {}): AxiosPromise<Count> {
     return this.get(`${this.path}/count`, {
       params: filter,
       headers: {

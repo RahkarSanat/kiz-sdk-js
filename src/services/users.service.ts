@@ -1,5 +1,5 @@
-import { CreateAxiosDefaults } from 'axios';
-import { ServiceOption, User, UserModel } from '../common';
+import { ServiceOption } from 'common/infrastructure';
+import { User, UserModel } from '../common';
 import { BaseService } from './core';
 
 export class UsersService extends BaseService<UserModel, User> {
