@@ -14,24 +14,6 @@ commit# Kiz Platform SDK
 
 ---
 
-_config [from](https://superface.ai/blog/npm-publish-gh-actions-changelog)_
-
 ## ChangeLogs
 
-    "As you commit changes to your project, write them down into the [Unreleased] section. Once you trigger a new release, unreleased changes are automatically moved under the new version heading."
-
-## Trigger new release
-
-You can find the “Run workflow” button in your GitHub repository under “Actions” → “Release package”.
-
-![Screenshot GitHub Actions run workflow](https://superface.ai/static_web/_next/image?url=%2Fimages%2Fblog%2Fposts%2F2022-06-github-run-workflow.png&w=3840&q=75)
-
-## Release type
-
-- patch
-- minor
-- major
-- prepatch
-- preminor
-- premajor
-- prerelease
+As you commit changes to your project, write them down into the [Unreleased] section. Once you trigger a new release, unreleased changes are automatically moved under the new version heading.

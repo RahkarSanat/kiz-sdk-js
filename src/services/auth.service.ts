@@ -1,5 +1,5 @@
 import { AxiosPromise, AxiosRequestConfig } from 'axios';
-import { AuthenticationDecrypt, AuthTokenReq, AuthTokenRes, ServiceOption } from '../common';
+import { AccessTokenObject, AuthTokenReq, AuthTokenRes, ServiceOption } from '../common';
 import { RequestService } from './core';
 import { AXIOS_CLIENT } from '../common/infrastructure';
 
@@ -25,8 +25,8 @@ export class AuthService extends RequestService {
     });
   }
 
-  public async decrypt(config?: AxiosRequestConfig): AxiosPromise<AuthenticationDecrypt> {
-    return this.get<AuthenticationDecrypt>(`${this.path}/decrypt`, {
+  public async decrypt(config?: AxiosRequestConfig): AxiosPromise<AccessTokenObject> {
+    return this.get<AccessTokenObject>(`${this.path}/decrypt`, {
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
       },
