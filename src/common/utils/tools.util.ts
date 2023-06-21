@@ -1,6 +1,3 @@
-import { AxiosRequestConfig, InternalAxiosRequestConfig } from 'axios';
-import * as AxiosLogger from 'axios-logger';
-
 export const isAvailable = ({
   deleted_at,
   restored_at,
