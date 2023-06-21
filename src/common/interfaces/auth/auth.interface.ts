@@ -28,8 +28,10 @@ export interface AuthTokenReq {
   subjects?: string[];
 }
 
-export interface AuthenticationDecrypt {
-  t: 'A' | 'R';
+/**
+ * for decrypt usage
+ */
+export interface AccessTokenObject {
   cid: string;
   aid?: string;
   uid?: string;
@@ -37,6 +39,9 @@ export interface AuthenticationDecrypt {
   scopes: string[];
   session: string;
   client_id: string;
+
+  iat?: number;
+  exp?: number;
 }
 
 export interface JwtToken {
