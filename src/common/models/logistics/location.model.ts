@@ -5,6 +5,5 @@ export class LocationModel extends BaseModel<LocationModel> {
   type!: string;
   identity!: string;
   geometry!: Geometry;
-  vehicleId?: number;
   properties?: Record<string, unknown>;
 }
