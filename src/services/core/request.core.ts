@@ -4,7 +4,7 @@ export interface RequestOptions {
   client: AxiosInstance;
 }
 
-export class RequestService {
+export abstract class RequestService {
   protected client: AxiosInstance;
 
   constructor(options: RequestOptions) {

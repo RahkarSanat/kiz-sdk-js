@@ -168,4 +168,27 @@ export class BaseService<M, I> extends RequestService {
       ...config,
     });
   }
+
+  public async destroyById(id: string, { filter, config }: OneQueryMethodsInput<M> = {}): AxiosPromise<I> {
+    return this.delete(`${this.path}/${id}/destroy`, {
+      params: filter,
+      headers: {
+        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+      },
+      ...config,
+    });
+  }
+
+  public async destroyBulk(
+    filter: OneFilter<M>,
+    { config }: { config?: AxiosRequestConfig } = {},
+  ): AxiosPromise<I> {
+    return this.delete(`${this.path}/destroy`, {
+      params: filter,
+      headers: {
+        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+      },
+      ...config,
+    });
+  }
 }

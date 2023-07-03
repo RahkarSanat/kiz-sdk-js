@@ -1,25 +1,25 @@
 import { AxiosPromise, AxiosRequestConfig } from 'axios';
 import {
-  Artifact,
-  CountQueryMethodsInput,
-  QueryMethodsInput,
-  ArtifactModel,
-  OneFilter,
-  Items,
-  OneQueryMethodsInput,
   Count,
-} from '../common';
-import { RequestService } from './core';
-import { AXIOS_CLIENT, ServiceOption } from '../common/infrastructure';
+  CountQueryMethodsInput,
+  Items,
+  Location,
+  LocationModel,
+  OneFilter,
+  OneQueryMethodsInput,
+  QueryMethodsInput,
+} from '../../common';
+import { AXIOS_CLIENT, ServiceOption } from '../../common/infrastructure';
+import { RequestService } from 'services/core';
 
-export class ArtifactsService extends RequestService {
+export class LocationsService extends RequestService {
   constructor(protected readonly path: string, protected readonly options?: ServiceOption) {
     super(AXIOS_CLIENT(options));
   }
 
-  public async count<Meta>(
+  public async count<Meta, Prop>(
     type: string,
-    { filter, config }: CountQueryMethodsInput<ArtifactModel<Meta>> = {},
+    { filter, config }: CountQueryMethodsInput<LocationModel<Meta, Prop>> = {},
   ): AxiosPromise<Count> {
     return this.get(`${this.path}/${type}/count`, {
       params: filter,
@@ -30,11 +30,11 @@ export class ArtifactsService extends RequestService {
     });
   }
 
-  public async create<Meta>(
+  public async create<Meta, Prop>(
     type: string,
-    model: ArtifactModel<Meta>,
+    model: LocationModel<Meta, Prop>,
     { config }: { config?: AxiosRequestConfig } = {},
-  ): AxiosPromise<Artifact<Meta>> {
+  ): AxiosPromise<Location<Meta, Prop>> {
     return this.post(
       { url: `${this.path}/${type}`, data: model },
       {
@@ -46,10 +46,10 @@ export class ArtifactsService extends RequestService {
     );
   }
 
-  public async find<Meta>(
+  public async find<Meta, Prop>(
     type: string,
-    { filter, config }: QueryMethodsInput<ArtifactModel<Meta>> = {},
-  ): AxiosPromise<Items<Artifact<Meta>>> {
+    { filter, config }: QueryMethodsInput<LocationModel<Meta, Prop>> = {},
+  ): AxiosPromise<Items<Location<Meta, Prop>>> {
     return this.get(`${this.path}/${type}`, {
       params: filter,
       headers: {
@@ -59,11 +59,11 @@ export class ArtifactsService extends RequestService {
     });
   }
 
-  public async findById<Meta>(
+  public async findById<Meta, Prop>(
     type: string,
     id: string,
-    { filter, config }: OneQueryMethodsInput<ArtifactModel<Meta>> = {},
-  ): AxiosPromise<Artifact<Meta>> {
+    { filter, config }: OneQueryMethodsInput<LocationModel<Meta, Prop>> = {},
+  ): AxiosPromise<Location<Meta, Prop>> {
     return this.get(`${this.path}/${type}/${id}`, {
       params: filter,
       headers: {
@@ -73,11 +73,11 @@ export class ArtifactsService extends RequestService {
     });
   }
 
-  public async findOne<Meta>(
+  public async findOne<Meta, Prop>(
     type: string,
-    filter: OneFilter<ArtifactModel<Meta>>,
+    filter: OneFilter<LocationModel<Meta, Prop>>,
     { config }: { config?: AxiosRequestConfig } = {},
-  ): AxiosPromise<Artifact<Meta>> {
+  ): AxiosPromise<Location<Meta, Prop>> {
     return this.get(`${this.path}/one/${type}`, {
       params: filter,
       headers: {
@@ -87,12 +87,12 @@ export class ArtifactsService extends RequestService {
     });
   }
 
-  public async updateById<Meta>(
+  public async updateById<Meta, Prop>(
     type: string,
     id: string,
-    model: ArtifactModel<Meta>,
-    { filter, config }: OneQueryMethodsInput<ArtifactModel<Meta>> = {},
-  ): AxiosPromise<Artifact<Meta>> {
+    model: LocationModel<Meta, Prop>,
+    { filter, config }: OneQueryMethodsInput<LocationModel<Meta, Prop>> = {},
+  ): AxiosPromise<Location<Meta, Prop>> {
     return this.patch(`${this.path}/${type}/${id}`, model, {
       params: filter,
       headers: {
@@ -102,12 +102,12 @@ export class ArtifactsService extends RequestService {
     });
   }
 
-  public async updateOne<Meta>(
+  public async updateOne<Meta, Prop>(
     type: string,
-    model: ArtifactModel<Meta>,
-    filter: OneFilter<ArtifactModel<Meta>>,
+    model: LocationModel<Meta, Prop>,
+    filter: OneFilter<LocationModel<Meta, Prop>>,
     { config }: { config?: AxiosRequestConfig } = {},
-  ): AxiosPromise<Artifact<Meta>> {
+  ): AxiosPromise<Location<Meta, Prop>> {
     return this.patch(`${this.path}/${type}/one`, model, {
       params: filter,
       headers: {
@@ -117,11 +117,11 @@ export class ArtifactsService extends RequestService {
     });
   }
 
-  public async deleteById<Meta>(
+  public async deleteById<Meta, Prop>(
     type: string,
     id: string,
-    { filter, config }: OneQueryMethodsInput<ArtifactModel<Meta>> = {},
-  ): AxiosPromise<Artifact<Meta>> {
+    { filter, config }: OneQueryMethodsInput<LocationModel<Meta, Prop>> = {},
+  ): AxiosPromise<Location<Meta, Prop>> {
     return this.delete(`${this.path}/${type}/${id}`, {
       params: filter,
       headers: {
@@ -131,11 +131,11 @@ export class ArtifactsService extends RequestService {
     });
   }
 
-  public async deleteOne<Meta>(
+  public async deleteOne<Meta, Prop>(
     type: string,
-    filter: OneFilter<ArtifactModel<Meta>>,
+    filter: OneFilter<LocationModel<Meta, Prop>>,
     { config }: { config?: AxiosRequestConfig },
-  ): AxiosPromise<Artifact<Meta>> {
+  ): AxiosPromise<Location<Meta, Prop>> {
     return this.delete(`${this.path}/${type}/one`, {
       params: filter,
       headers: {
@@ -145,11 +145,11 @@ export class ArtifactsService extends RequestService {
     });
   }
 
-  public async restoreById<Meta>(
+  public async restoreById<Meta, Prop>(
     type: string,
     id: string,
-    { filter, config }: OneQueryMethodsInput<ArtifactModel<Meta>> = {},
-  ): AxiosPromise<Artifact<Meta>> {
+    { filter, config }: OneQueryMethodsInput<LocationModel<Meta, Prop>> = {},
+  ): AxiosPromise<Location<Meta, Prop>> {
     return this.put(
       { url: `${this.path}/${type}/${id}/restore` },
       {
@@ -162,11 +162,11 @@ export class ArtifactsService extends RequestService {
     );
   }
 
-  public async restoreOne<Meta>(
+  public async restoreOne<Meta, Prop>(
     type: string,
-    filter: OneFilter<ArtifactModel<Meta>>,
+    filter: OneFilter<LocationModel<Meta, Prop>>,
     { config }: { config?: AxiosRequestConfig },
-  ): AxiosPromise<Artifact<Meta>> {
+  ): AxiosPromise<Location<Meta, Prop>> {
     return this.put(
       { url: `${this.path}/${type}/restore` },
       {
@@ -179,10 +179,10 @@ export class ArtifactsService extends RequestService {
     );
   }
 
-  public async updateBulk<Meta>(
+  public async updateBulk<Meta, Prop>(
     type: string,
-    entity: ArtifactModel<Meta>,
-    { filter, config }: CountQueryMethodsInput<Artifact<Meta>>,
+    entity: LocationModel<Meta, Prop>,
+    { filter, config }: CountQueryMethodsInput<Location<Meta, Prop>>,
   ): AxiosPromise<number> {
     return this.patch(`${this.path}/${type}/bulk`, entity, {
       params: filter,
@@ -193,24 +193,11 @@ export class ArtifactsService extends RequestService {
     });
   }
 
-  public async updateMetadataByIdentity<Meta>(
-    type: string,
-    identity: string,
-    metadata: Meta,
-    { config }: { config?: AxiosRequestConfig },
-  ): AxiosPromise<Artifact<Meta>> {
-    return this.patch(`${this.path}/${type}/${identity}/metadata`, metadata, {
-      headers: {
-        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
-      },
-      ...config,
-    });
-  }
-  public async destroyById<Meta>(
+  public async destroyById<Meta, Prop>(
     type: string,
     id: string,
-    { filter, config }: OneQueryMethodsInput<ArtifactModel<Meta>> = {},
-  ): AxiosPromise<Artifact<Meta>> {
+    { filter, config }: OneQueryMethodsInput<LocationModel<Meta, Prop>> = {},
+  ): AxiosPromise<Location<Meta, Prop>> {
     return this.put(
       { url: `${this.path}/${type}/${id}/destroy` },
       {
@@ -223,11 +210,11 @@ export class ArtifactsService extends RequestService {
     );
   }
 
-  public async destroyBulk<Meta>(
+  public async destroyBulk<Meta, Prop>(
     type: string,
-    filter: OneFilter<ArtifactModel<Meta>>,
+    filter: OneFilter<LocationModel<Meta, Prop>>,
     { config }: { config?: AxiosRequestConfig },
-  ): AxiosPromise<Artifact<Meta>> {
+  ): AxiosPromise<Location<Meta, Prop>> {
     return this.put(
       { url: `${this.path}/${type}/destroy` },
       {
