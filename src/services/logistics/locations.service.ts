@@ -10,7 +10,7 @@ import {
   QueryMethodsInput,
 } from '../../common';
 import { AXIOS_CLIENT, ServiceOption } from '../../common/infrastructure';
-import { RequestService } from 'services/core';
+import { RequestService } from '../core';
 
 export class LocationsService extends RequestService {
   constructor(protected readonly path: string, protected readonly options?: ServiceOption) {
