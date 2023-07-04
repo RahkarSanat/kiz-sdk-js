@@ -5,5 +5,5 @@ export interface User<Meta = Record<string, unknown>> extends Base<Meta> {
   email?: string;
   password?: string;
   username?: string;
-  subject: string[];
+  subjects: string[];
 }

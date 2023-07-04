@@ -6,5 +6,5 @@ export class UserModel extends BaseModel<UserModel> {
   email?: Action;
   username?: string;
   password?: string;
-  subject?: string;
+  subjects?: string[];
 }
