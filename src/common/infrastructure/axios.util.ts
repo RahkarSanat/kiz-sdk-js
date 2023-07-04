@@ -22,13 +22,13 @@ export const AXIOS_CLIENT = (options?: ServiceOption) => {
 
   client.interceptors.request.use(
     requestInterceptor?.onFulfilled,
-    requestInterceptor?.onFulfilled,
+    requestInterceptor?.onRejected,
     requestInterceptor?.options,
   );
 
   client.interceptors.response.use(
     responseInterceptor?.onFulfilled,
-    responseInterceptor?.onFulfilled,
+    responseInterceptor?.onRejected,
     responseInterceptor?.options,
   );
 
