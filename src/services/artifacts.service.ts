@@ -183,7 +183,7 @@ export class ArtifactsService extends RequestService {
     type: string,
     entity: ArtifactModel<Meta>,
     { filter, config }: CountQueryMethodsInput<Artifact<Meta>>,
-  ): AxiosPromise<number> {
+  ): AxiosPromise<Count> {
     return this.patch(`${this.path}/${type}/bulk`, entity, {
       params: filter,
       headers: {
@@ -227,7 +227,7 @@ export class ArtifactsService extends RequestService {
     type: string,
     filter: OneFilter<ArtifactModel<Meta>>,
     { config }: { config?: AxiosRequestConfig },
-  ): AxiosPromise<Artifact<Meta>> {
+  ): AxiosPromise<Count> {
     return this.put(
       { url: `${this.path}/${type}/destroy` },
       {

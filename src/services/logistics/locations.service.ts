@@ -183,7 +183,7 @@ export class LocationsService extends RequestService {
     type: string,
     entity: LocationModel<Meta, Prop>,
     { filter, config }: CountQueryMethodsInput<Location<Meta, Prop>>,
-  ): AxiosPromise<number> {
+  ): AxiosPromise<Count> {
     return this.patch(`${this.path}/${type}/bulk`, entity, {
       params: filter,
       headers: {
@@ -214,7 +214,7 @@ export class LocationsService extends RequestService {
     type: string,
     filter: OneFilter<LocationModel<Meta, Prop>>,
     { config }: { config?: AxiosRequestConfig },
-  ): AxiosPromise<Location<Meta, Prop>> {
+  ): AxiosPromise<Count> {
     return this.put(
       { url: `${this.path}/${type}/destroy` },
       {
