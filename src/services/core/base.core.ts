@@ -156,10 +156,7 @@ export class BaseService<M, I> extends RequestService {
     );
   }
 
-  public async updateBulk(
-    model: M,
-    { filter, config }: CountQueryMethodsInput<M> = {},
-  ): AxiosPromise<number> {
+  public async updateBulk(model: M, { filter, config }: CountQueryMethodsInput<M> = {}): AxiosPromise<Count> {
     return this.patch(`${this.path}/bulk`, model, {
       params: filter,
       headers: {
@@ -182,7 +179,7 @@ export class BaseService<M, I> extends RequestService {
   public async destroyBulk(
     filter: OneFilter<M>,
     { config }: { config?: AxiosRequestConfig } = {},
-  ): AxiosPromise<I> {
+  ): AxiosPromise<Count> {
     return this.delete(`${this.path}/destroy`, {
       params: filter,
       headers: {

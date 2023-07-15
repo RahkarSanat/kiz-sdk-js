@@ -8,3 +8,4 @@ export * from './notifications';
 export * from './config.interface';
 export * from './profile.interface';
 export * from './logistics';
+export * from './stat.interface';

@@ -5,10 +5,8 @@ export interface Stat<Meta = Record<string, unknown>> extends Base<Meta> {
   amount: number;
   count: number;
   date: Date;
-  flags?: { [x: string]: number | string }
+  flags?: { [x: string]: number | string };
 }
-
-
 
 export interface BulkStats {
   sum: number;
