@@ -12,6 +12,7 @@ import {
   DriversService,
   VehiclesService,
   ProfilesService,
+  StatsService,
 } from './services';
 import { ServiceOption } from 'common/infrastructure';
 
@@ -32,6 +33,7 @@ export class KizClient {
   protected configs?: ConfigsService;
   protected drivers?: DriversService;
   protected vehicles?: VehiclesService;
+  protected stats?: StatsService;
 
   constructor(protected readonly options?: ServiceOption) {}
 
@@ -82,5 +84,9 @@ export class KizClient {
       this.templates ?? new TemplatesService('/notifications/templates', this.options));
 
     return { notifierService, providersService, recipientsService, templatesService };
+  }
+
+  public get statsService() {
+    return (this.stats = this.stats ?? new StatsService('/stats', this.options));
   }
 }

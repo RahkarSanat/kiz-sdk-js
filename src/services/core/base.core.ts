@@ -2,6 +2,7 @@ import { AxiosPromise, AxiosRequestConfig } from 'axios';
 import {
   Count,
   CountQueryMethodsInput,
+  Filter,
   Items,
   OneFilter,
   OneQueryMethodsInput,
@@ -76,6 +77,16 @@ export class BaseService<M, I> extends RequestService {
     });
   }
 
+  public async updateBulk(model: M, { filter, config }: CountQueryMethodsInput<M> = {}): AxiosPromise<Count> {
+    return this.patch(this.path, model, {
+      params: filter,
+      headers: {
+        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+      },
+      ...config,
+    });
+  }
+
   public async updateById(
     id: string,
     model: M,
@@ -96,6 +107,19 @@ export class BaseService<M, I> extends RequestService {
     { config }: { config?: AxiosRequestConfig } = {},
   ): AxiosPromise<I> {
     return this.patch(`${this.path}/one`, model, {
+      params: filter,
+      headers: {
+        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+      },
+      ...config,
+    });
+  }
+
+  public async deleteBulk(
+    filter: OneFilter<M>,
+    { config }: { config?: AxiosRequestConfig } = {},
+  ): AxiosPromise<I> {
+    return this.delete(this.path, {
       params: filter,
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
@@ -127,6 +151,22 @@ export class BaseService<M, I> extends RequestService {
     });
   }
 
+  public async restoreBulk(
+    filter: OneFilter<M>,
+    { config }: { config?: AxiosRequestConfig } = {},
+  ): AxiosPromise<I> {
+    return this.put(
+      { url: `${this.path}/restore` },
+      {
+        params: filter,
+        headers: {
+          Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+        },
+        ...config,
+      },
+    );
+  }
+
   public async restoreById(id: string, { filter, config }: OneQueryMethodsInput<M> = {}): AxiosPromise<I> {
     return this.put(
       { url: `${this.path}/${id}/restore` },
@@ -156,8 +196,11 @@ export class BaseService<M, I> extends RequestService {
     );
   }
 
-  public async updateBulk(model: M, { filter, config }: CountQueryMethodsInput<M> = {}): AxiosPromise<Count> {
-    return this.patch(`${this.path}/bulk`, model, {
+  public async destroyBulk(
+    filter: OneFilter<M>,
+    { config }: { config?: AxiosRequestConfig } = {},
+  ): AxiosPromise<Count> {
+    return this.delete(`${this.path}/destroy`, {
       params: filter,
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
@@ -176,11 +219,11 @@ export class BaseService<M, I> extends RequestService {
     });
   }
 
-  public async destroyBulk(
+  public async destroyOne(
     filter: OneFilter<M>,
     { config }: { config?: AxiosRequestConfig } = {},
-  ): AxiosPromise<Count> {
-    return this.delete(`${this.path}/destroy`, {
+  ): AxiosPromise<I> {
+    return this.delete(`${this.path}/destroy/one`, {
       params: filter,
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,

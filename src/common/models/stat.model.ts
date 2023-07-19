@@ -1,3 +1,4 @@
+import { StatMethod } from 'common/enums';
 import { BaseModel } from './base.model';
 
 export class StatModel<Meta = Record<string, unknown>> extends BaseModel<StatModel, Meta> {
@@ -5,5 +6,6 @@ export class StatModel<Meta = Record<string, unknown>> extends BaseModel<StatMod
   amount!: number;
   bias!: number;
   date!: Date;
+  method!: StatMethod;
   flags?: { [x: string]: number | string };
 }

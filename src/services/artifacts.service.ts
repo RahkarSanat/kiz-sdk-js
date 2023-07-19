@@ -78,7 +78,21 @@ export class ArtifactsService extends RequestService {
     filter: OneFilter<ArtifactModel<Meta>>,
     { config }: { config?: AxiosRequestConfig } = {},
   ): AxiosPromise<Artifact<Meta>> {
-    return this.get(`${this.path}/one/${type}`, {
+    return this.get(`${this.path}/${type}/one`, {
+      params: filter,
+      headers: {
+        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+      },
+      ...config,
+    });
+  }
+
+  public async updateBulk<Meta>(
+    type: string,
+    entity: ArtifactModel<Meta>,
+    { filter, config }: CountQueryMethodsInput<Artifact<Meta>>,
+  ): AxiosPromise<Count> {
+    return this.patch(`${this.path}/${type}/bulk`, entity, {
       params: filter,
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
@@ -117,6 +131,34 @@ export class ArtifactsService extends RequestService {
     });
   }
 
+  public async updateMetadataByIdentity<Meta>(
+    type: string,
+    identity: string,
+    metadata: Meta,
+    { config }: { config?: AxiosRequestConfig },
+  ): AxiosPromise<Artifact<Meta>> {
+    return this.patch(`${this.path}/${type}/${identity}/metadata`, metadata, {
+      headers: {
+        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+      },
+      ...config,
+    });
+  }
+
+  public async deleteBulk<Meta>(
+    type: string,
+    filter: OneFilter<ArtifactModel<Meta>>,
+    { config }: { config?: AxiosRequestConfig } = {},
+  ): AxiosPromise<Artifact<Meta>> {
+    return this.delete(`${this.path}/${type}`, {
+      params: filter,
+      headers: {
+        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+      },
+      ...config,
+    });
+  }
+
   public async deleteById<Meta>(
     type: string,
     id: string,
@@ -145,6 +187,23 @@ export class ArtifactsService extends RequestService {
     });
   }
 
+  public async restoreBulk<Meta>(
+    type: string,
+    filter: OneFilter<ArtifactModel<Meta>>,
+    { config }: { config?: AxiosRequestConfig } = {},
+  ): AxiosPromise<Artifact<Meta>> {
+    return this.put(
+      { url: `${this.path}/${type}/restore` },
+      {
+        params: filter,
+        headers: {
+          Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+        },
+        ...config,
+      },
+    );
+  }
+
   public async restoreById<Meta>(
     type: string,
     id: string,
@@ -168,51 +227,7 @@ export class ArtifactsService extends RequestService {
     { config }: { config?: AxiosRequestConfig },
   ): AxiosPromise<Artifact<Meta>> {
     return this.put(
-      { url: `${this.path}/${type}/restore` },
-      {
-        params: filter,
-        headers: {
-          Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
-        },
-        ...config,
-      },
-    );
-  }
-
-  public async updateBulk<Meta>(
-    type: string,
-    entity: ArtifactModel<Meta>,
-    { filter, config }: CountQueryMethodsInput<Artifact<Meta>>,
-  ): AxiosPromise<Count> {
-    return this.patch(`${this.path}/${type}/bulk`, entity, {
-      params: filter,
-      headers: {
-        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
-      },
-      ...config,
-    });
-  }
-
-  public async updateMetadataByIdentity<Meta>(
-    type: string,
-    identity: string,
-    metadata: Meta,
-    { config }: { config?: AxiosRequestConfig },
-  ): AxiosPromise<Artifact<Meta>> {
-    return this.patch(`${this.path}/${type}/${identity}/metadata`, metadata, {
-      headers: {
-        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
-      },
-      ...config,
-    });
-  }
-  public async destroyById<Meta>(
-    type: string,
-    id: string,
-    { filter, config }: OneQueryMethodsInput<ArtifactModel<Meta>> = {},
-  ): AxiosPromise<Artifact<Meta>> {
-    return this.put(
-      { url: `${this.path}/${type}/${id}/destroy` },
+      { url: `${this.path}/${type}/restore/one` },
       {
         params: filter,
         headers: {
@@ -228,15 +243,40 @@ export class ArtifactsService extends RequestService {
     filter: OneFilter<ArtifactModel<Meta>>,
     { config }: { config?: AxiosRequestConfig },
   ): AxiosPromise<Count> {
-    return this.put(
-      { url: `${this.path}/${type}/destroy` },
-      {
-        params: filter,
-        headers: {
-          Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
-        },
-        ...config,
+    return this.delete(`${this.path}/${type}/destroy`, {
+      params: filter,
+      headers: {
+        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
       },
-    );
+      ...config,
+    });
+  }
+
+  public async destroyById<Meta>(
+    type: string,
+    id: string,
+    { filter, config }: OneQueryMethodsInput<ArtifactModel<Meta>> = {},
+  ): AxiosPromise<Artifact<Meta>> {
+    return this.delete(`${this.path}/${type}/${id}/destroy`, {
+      params: filter,
+      headers: {
+        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+      },
+      ...config,
+    });
+  }
+
+  public async destroyOne<Meta>(
+    type: string,
+    filter: OneFilter<ArtifactModel<Meta>>,
+    { config }: { config?: AxiosRequestConfig } = {},
+  ): AxiosPromise<Artifact<Meta>> {
+    return this.delete(`${this.path}/${type}/destroy/one`, {
+      params: filter,
+      headers: {
+        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+      },
+      ...config,
+    });
   }
 }

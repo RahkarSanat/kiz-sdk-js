@@ -78,7 +78,21 @@ export class LocationsService extends RequestService {
     filter: OneFilter<LocationModel<Meta, Prop>>,
     { config }: { config?: AxiosRequestConfig } = {},
   ): AxiosPromise<Location<Meta, Prop>> {
-    return this.get(`${this.path}/one/${type}`, {
+    return this.get(`${this.path}/${type}/one`, {
+      params: filter,
+      headers: {
+        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+      },
+      ...config,
+    });
+  }
+
+  public async updateBulk<Meta, Prop>(
+    type: string,
+    entity: LocationModel<Meta, Prop>,
+    { filter, config }: CountQueryMethodsInput<Location<Meta, Prop>>,
+  ): AxiosPromise<Count> {
+    return this.patch(`${this.path}/${type}/bulk`, entity, {
       params: filter,
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
@@ -117,6 +131,20 @@ export class LocationsService extends RequestService {
     });
   }
 
+  public async deleteBulk<Meta, Prop>(
+    type: string,
+    filter: OneFilter<LocationModel<Meta, Prop>>,
+    { config }: { config?: AxiosRequestConfig } = {},
+  ): AxiosPromise<Location<Meta, Prop>> {
+    return this.delete(`${this.path}/${type}`, {
+      params: filter,
+      headers: {
+        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+      },
+      ...config,
+    });
+  }
+
   public async deleteById<Meta, Prop>(
     type: string,
     id: string,
@@ -143,6 +171,23 @@ export class LocationsService extends RequestService {
       },
       ...config,
     });
+  }
+
+  public async restoreBulk<Meta, Prop>(
+    type: string,
+    filter: OneFilter<LocationModel<Meta, Prop>>,
+    { config }: { config?: AxiosRequestConfig } = {},
+  ): AxiosPromise<Location<Meta, Prop>> {
+    return this.put(
+      { url: `${this.path}/${type}/restore` },
+      {
+        params: filter,
+        headers: {
+          Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+        },
+        ...config,
+      },
+    );
   }
 
   public async restoreById<Meta, Prop>(
@@ -179,12 +224,12 @@ export class LocationsService extends RequestService {
     );
   }
 
-  public async updateBulk<Meta, Prop>(
+  public async destroyBulk<Meta, Prop>(
     type: string,
-    entity: LocationModel<Meta, Prop>,
-    { filter, config }: CountQueryMethodsInput<Location<Meta, Prop>>,
+    filter: OneFilter<LocationModel<Meta, Prop>>,
+    { config }: { config?: AxiosRequestConfig },
   ): AxiosPromise<Count> {
-    return this.patch(`${this.path}/${type}/bulk`, entity, {
+    return this.delete(`${this.path}/${type}/destroy`, {
       params: filter,
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
@@ -198,32 +243,26 @@ export class LocationsService extends RequestService {
     id: string,
     { filter, config }: OneQueryMethodsInput<LocationModel<Meta, Prop>> = {},
   ): AxiosPromise<Location<Meta, Prop>> {
-    return this.put(
-      { url: `${this.path}/${type}/${id}/destroy` },
-      {
-        params: filter,
-        headers: {
-          Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
-        },
-        ...config,
+    return this.delete(`${this.path}/${type}/${id}/destroy`, {
+      params: filter,
+      headers: {
+        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
       },
-    );
+      ...config,
+    });
   }
 
-  public async destroyBulk<Meta, Prop>(
+  public async destroyOne<Meta, Prop>(
     type: string,
     filter: OneFilter<LocationModel<Meta, Prop>>,
-    { config }: { config?: AxiosRequestConfig },
-  ): AxiosPromise<Count> {
-    return this.put(
-      { url: `${this.path}/${type}/destroy` },
-      {
-        params: filter,
-        headers: {
-          Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
-        },
-        ...config,
+    { config }: { config?: AxiosRequestConfig } = {},
+  ): AxiosPromise<Location<Meta, Prop>> {
+    return this.delete(`${this.path}/${type}/destroy/one`, {
+      params: filter,
+      headers: {
+        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
       },
-    );
+      ...config,
+    });
   }
 }
