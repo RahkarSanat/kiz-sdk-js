@@ -9,3 +9,4 @@ export * from './provider-name.enum';
 export * from './sms-functionality.enum';
 export * from './user-type.enum';
 export * from './gender.enum';
+export * from './stat-method.enum';
