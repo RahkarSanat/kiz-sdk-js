@@ -6,3 +6,4 @@ export * from './config.model';
 export * from './profile.model';
 export * from './user.model';
 export * from './logistics';
+export * from './stat.model';
