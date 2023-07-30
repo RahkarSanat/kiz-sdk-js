@@ -7,13 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
-### Added
+### Changed
+- Filter pagination
+### Fixed
+- locationsService delete bulk
 
+## 2.4.0 - 2023-07-19
+### Added
 - one and bulk route
 - StatsService to KizClient
 
 ### Fixed
-
 - StatMethod enum
 
 ## 2.3.4 - 2023-07-09

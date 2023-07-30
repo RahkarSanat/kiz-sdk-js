@@ -1,9 +1,10 @@
 import { SortOrder } from 'mongoose';
-import { Projection, Query } from '../types';
+import { Pagination, Projection, Query } from '../types';
 
 export interface Filter<T = any, K = T> {
   query?: Query<T>;
   projection?: Projection<T>;
+  pagination?: Pagination<K>;
   limit?: number;
   skip?: number;
   sort?: { [key in keyof K]: SortOrder | { $meta: 'textScore' } };
