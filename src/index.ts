@@ -13,6 +13,7 @@ import {
   VehiclesService,
   ProfilesService,
   StatsService,
+  RulesService,
 } from './services';
 import { ServiceOption } from 'common/infrastructure';
 
@@ -30,6 +31,7 @@ export class KizClient {
   protected providers?: ProvidersService;
   protected recipients?: RecipientsService;
   protected templates?: TemplatesService;
+  protected rules?: RulesService;
   protected configs?: ConfigsService;
   protected drivers?: DriversService;
   protected vehicles?: VehiclesService;
@@ -82,8 +84,9 @@ export class KizClient {
       this.recipients ?? new RecipientsService('/notifications/recipients', this.options));
     const templatesService = (this.templates =
       this.templates ?? new TemplatesService('/notifications/templates', this.options));
+    const rulesService = (this.rules = this.rules ?? new RulesService('/notifications/rules', this.options));
 
-    return { notifierService, providersService, recipientsService, templatesService };
+    return { notifierService, providersService, recipientsService, templatesService, rulesService };
   }
 
   public get statsService() {
