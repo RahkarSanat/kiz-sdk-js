@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 2.5.1 - 2023-07-31
+
 ## 2.5.0 - 2023-07-31
 ### Changed
 - Filter pagination
