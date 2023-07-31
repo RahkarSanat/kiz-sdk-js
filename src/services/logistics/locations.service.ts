@@ -136,7 +136,7 @@ export class LocationsService extends RequestService {
     filter: OneFilter<LocationModel<Meta, Prop>>,
     { config }: { config?: AxiosRequestConfig } = {},
   ): AxiosPromise<Location<Meta, Prop>> {
-    return this.delete(`${this.path}/${type}/bulk`, {
+    return this.delete(`${this.path}/${type}`, {
       params: filter,
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,

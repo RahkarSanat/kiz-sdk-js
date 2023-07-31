@@ -10,6 +10,6 @@ export interface Filter<T = any, K = T> {
   sort?: { [key in keyof K]: SortOrder | { $meta: 'textScore' } };
 }
 
-export type OneFilter<T = any> = Omit<Filter<T>, 'limit' | 'skip' | 'sort'>;
+export type OneFilter<T = any> = Omit<Filter<T>, 'pagination' | 'limit' | 'skip' | 'sort'>;
 
-export type CountFilter<T = any> = Omit<Filter<T>, 'limit' | 'skip' | 'sort' | 'projection'>;
+export type CountFilter<T = any> = Omit<Filter<T>, 'pagination' | 'limit' | 'skip' | 'sort' | 'projection'>;
