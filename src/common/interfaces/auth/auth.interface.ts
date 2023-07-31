@@ -40,7 +40,6 @@ export interface AccessTokenObject {
   subjects: string;
   scopes: string;
   session: string;
-  client_id: string;
 
   iat?: Long;
   exp?: Long;
