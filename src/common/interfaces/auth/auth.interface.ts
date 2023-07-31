@@ -38,7 +38,7 @@ export interface AccessTokenObject {
   aid?: string;
   uid?: string;
   subjects: string;
-  scopes: string[];
+  scopes: string;
   session: string;
   client_id: string;
 
