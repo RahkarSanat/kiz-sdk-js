@@ -10,3 +10,4 @@ export * from './sms-functionality.enum';
 export * from './user-type.enum';
 export * from './gender.enum';
 export * from './stat-method.enum';
+export * from './notification-method.enum';
