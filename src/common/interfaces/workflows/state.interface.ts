@@ -4,5 +4,5 @@ export interface WorkflowState {
   ref: string;
   name?: string;
   status: WorkflowStatus;
-  value: any;
+  value?: unknown;
 }

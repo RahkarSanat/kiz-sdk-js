@@ -4,7 +4,7 @@ import { BaseModel } from './base.model';
 
 export class WorkflowModel extends BaseModel<WorkflowModel> {
   type!: string;
-  data?: any;
+  data?: unknown;
   status!: WorkflowStatus;
   tokens!: WorkflowToken[];
 }
