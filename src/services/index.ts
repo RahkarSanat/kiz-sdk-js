@@ -7,3 +7,4 @@ export * from './configs.service';
 export * from './profiles.service';
 export * from './logistics';
 export * from './stats.service';
+export * from './workflows.service';
