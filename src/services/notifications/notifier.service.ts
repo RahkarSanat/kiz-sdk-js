@@ -12,7 +12,7 @@ export class NotifierService extends BaseService<NotifierModel, Notifier> {
     config?: AxiosRequestConfig,
   ): AxiosPromise<Notifier> {
     return this.post(
-      { url: `${this.patch}/reason`, data: model },
+      { url: `${this.path}/reason`, data: model },
       {
         headers: {
           Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
@@ -24,7 +24,7 @@ export class NotifierService extends BaseService<NotifierModel, Notifier> {
 
   async byCustom(model: NotifierModel, config?: AxiosRequestConfig): AxiosPromise<Notifier> {
     return this.post(
-      { url: `${this.patch}/custom`, data: model },
+      { url: `${this.path}/custom`, data: model },
       {
         headers: {
           Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,

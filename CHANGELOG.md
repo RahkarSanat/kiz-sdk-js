@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Workflow Service
 - Workflow interfaces
 
+### Fixed
+- notification notifier url
+- locationModel identity optional
+
 ## 2.5.1 - 2023-07-31
 
 ## 2.5.0 - 2023-07-31
