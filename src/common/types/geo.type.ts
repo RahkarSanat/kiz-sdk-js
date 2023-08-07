@@ -27,11 +27,17 @@ export type GeoJSONFeature = Feature;
 export type GeoJSONFeatureCollection = FeatureCollection;
 
 export type Geometry =
+  | GeoJSONPosition
+  | GeoJSONBBox
+  | GoeJSONObject
+  | GeoJSONPoint
   | GeoJSONMultiPoint
   | GeoJSONLineString
   | GeoJSONMultiLineString
   | GeoJSONPolygon
   | GeoJSONMultiPolygon
-  | GeoJSONGeometryCollection;
+  | GeoJSONGeometryCollection
+  | GeoJSONFeature
+  | GeoJSONFeatureCollection;
 
 export type GeoJSON = Geometry | GeoJSONFeature | GeoJSONFeatureCollection;
