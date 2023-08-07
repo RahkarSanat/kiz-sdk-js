@@ -5,7 +5,7 @@ export class LocationModel<Meta = Record<string, unknown>, Prop = Record<string,
   LocationModel<Meta, Prop>,
   Meta
 > {
-  identity!: string;
+  identity?: string;
   geometry!: Geometry;
   properties?: Prop;
 }
