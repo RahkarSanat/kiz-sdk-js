@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 2.5.2 - 2023-08-07
 ### Added
 - order model & interface
 - suggestion model & interface
@@ -14,7 +15,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - update root index.ts file
 
 ## 2.5.1 - 2023-07-31
-
 ### Added
 - Workflow Model
 - Workflow Service
