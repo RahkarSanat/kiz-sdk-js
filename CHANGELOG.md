@@ -6,7 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
-## Added
+
+### Added
+- order model & interface
+- suggestion model & interface
+- related enums, service
+- update root index.ts file
+
+## 2.5.1 - 2023-07-31
+
+### Added
 - Workflow Model
 - Workflow Service
 - Workflow interfaces
@@ -14,8 +23,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - notification notifier url
 - locationModel identity optional
-
-## 2.5.1 - 2023-07-31
 
 ## 2.5.0 - 2023-07-31
 ### Changed
