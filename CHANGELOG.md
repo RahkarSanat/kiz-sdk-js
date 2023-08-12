@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 ### Added
 - Workflow DataFlow type added
+### Changed
+- Notification (all modules) type (models, interfaces)
 ### Fixed
 - Workflow status fixed
 - Zones added in BaseModel
