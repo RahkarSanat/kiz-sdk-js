@@ -1,8 +1,9 @@
 import { BaseModel } from '../base.model';
+import { ToModel } from './subs';
 
 export class RecipientModel extends BaseModel<RecipientModel> {
-  phone_numbers?: string[];
-  subjects?: string[];
-  user_ids?: string[];
+  name!: string;
+  to!: ToModel[];
   active?: boolean;
+  triggers!: string[];
 }
