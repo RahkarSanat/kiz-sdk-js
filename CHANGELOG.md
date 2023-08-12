@@ -7,11 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
-
+## 2.5.3 - 2023-08-12
 ### Changed
 - Notification (all modules) type (models, interfaces)
+
 ### Fixed
 - Workflow status fixed
+
 ## 2.5.2 - 2023-08-07
 ### Added
 - order model & interface
