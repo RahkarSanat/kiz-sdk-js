@@ -18,27 +18,21 @@ export interface KavenegarEntry {
   cost: number;
 }
 
-export interface KavenegarResponse {
-  entries: KavenegarEntry[];
-  message: string;
-  status: number;
-}
-
 export interface NotifierStatistics {
   sms?: {
-    status: Record<string, KavenegarResponse>[]; // or any other supported provider response type
+    status: Record<string, unknown>; // or any other supported provider response type
     message: string;
   };
   mail?: {
-    status: Record<string, KavenegarResponse>[];
+    status: Record<string, unknown>;
     message: string;
   };
   fcm?: {
-    status: Record<string, KavenegarResponse>[];
+    status: Record<string, unknown>;
     message: string;
   };
   socket?: {
-    status: Record<string, KavenegarResponse>[];
+    status: Record<string, unknown>;
     message: string;
   };
 }
@@ -52,5 +46,3 @@ export interface Notifier<Meta = Record<string, unknown>> extends Base<Meta> {
 
 export type NotificationNotifierInterface = Notifier;
 export type NotificationNotifierStatisticsInterface = NotifierStatistics;
-export type NotificationNotifierKavenegarResponseInterface = KavenegarResponse;
-export type NotificationNotifierKavenegarEntryInterface = KavenegarEntry;

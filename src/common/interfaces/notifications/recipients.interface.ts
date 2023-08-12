@@ -10,9 +10,9 @@ export interface To {
 
 export interface Recipient<Meta = Record<string, unknown>> extends Base<Meta> {
   name?: string;
-  to?: To;
+  to?: To[];
   active?: boolean;
-  triggers?: string;
+  triggers?: string[];
 }
 
 export type NotificationRecipientInterface = Recipient;
