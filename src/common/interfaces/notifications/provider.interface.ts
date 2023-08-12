@@ -41,3 +41,9 @@ export interface Provider<Meta = Record<string, unknown>> extends Base<Meta> {
   fcm?: FcmConfigs;
   socket?: SocketConfigs;
 }
+
+export type NotificationProviderInterface = Provider;
+export type NotificationProviderSmsConfigsInterface = SmsConfigs;
+export type NotificationProviderSocketConfigsInterface = SocketConfigs;
+export type NotificationProviderMailConfigsInterface = MailConfigs;
+export type NotificationProviderFcmConfigsInterface = FcmConfigs;
