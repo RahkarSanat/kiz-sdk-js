@@ -8,3 +8,5 @@ export * from './profiles.service';
 export * from './logistics';
 export * from './stats.service';
 export * from './workflows.service';
+export * from './orders.service';
+export * from './suggestions.service';

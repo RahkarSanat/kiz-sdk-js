@@ -7,3 +7,6 @@ export * from './profile.model';
 export * from './user.model';
 export * from './logistics';
 export * from './stat.model';
+export * from './workflow.model';
+export * from './order';
+export * from './suggestion.model';

@@ -15,6 +15,8 @@ import {
   StatsService,
   RulesService,
   WorkflowsService,
+  SuggestionsService,
+  OrdersService,
 } from './services';
 import { ServiceOption } from 'common/infrastructure';
 
@@ -38,6 +40,8 @@ export class KizClient {
   protected vehicles?: VehiclesService;
   protected stats?: StatsService;
   protected workflows?: WorkflowsService;
+  protected orders?: OrdersService;
+  protected suggestions?: SuggestionsService;
 
   constructor(protected readonly options?: ServiceOption) {}
 
@@ -97,5 +101,13 @@ export class KizClient {
 
   public get workflowsService() {
     return (this.workflows = this.workflows ?? new WorkflowsService('/workflows', this.options));
+  }
+
+  public get ordersService() {
+    return (this.orders = this.orders ?? new OrdersService('/orders', this.options));
+  }
+
+  public get suggestionsService() {
+    return (this.suggestions = this.suggestions ?? new SuggestionsService('/suggestions', this.options));
   }
 }

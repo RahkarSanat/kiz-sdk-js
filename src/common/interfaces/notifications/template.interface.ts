@@ -3,10 +3,11 @@ import { Base } from '../base';
 
 export interface Options {
   provider_id: string;
-  recipient_id: string;
+  alternative_provider_ids?: string[];
   body?: string;
   key_args?: string[];
   render?: boolean;
+  turtle?: number;
 }
 
 // TODO: update after considering types (must be an interface)
@@ -19,6 +20,7 @@ export interface MailOptions extends Options {
 
 export interface SmsOptions extends Options {
   functionality: SmsFunctionality;
+  provider_lookup_template_name?: string;
   retry?: boolean;
 }
 
@@ -38,3 +40,9 @@ export interface Template<Meta = Record<string, unknown>> extends Base<Meta> {
   fcm?: FcmOptions;
   socket?: SocketOptions;
 }
+
+export type NotificationTemplateInterface = Template;
+export type NotificationTemplateSmsOptionsInterface = SmsOptions;
+export type NotificationTemplateSocketOptionsInterface = SocketOptions;
+export type NotificationTemplateMailOptionsInterface = MailOptions;
+export type NotificationTemplateFcmOptionsInterface = FcmOptions;
