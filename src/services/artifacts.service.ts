@@ -89,7 +89,7 @@ export class ArtifactsService extends RequestService {
 
   public async updateBulk<Meta>(
     type: string,
-    entity: ArtifactModel<Meta>,
+    entity: Partial<ArtifactModel<Meta>>,
     { filter, config }: CountQueryMethodsInput<Artifact<Meta>>,
   ): AxiosPromise<Count> {
     return this.patch(`${this.path}/${type}/bulk`, entity, {
@@ -104,7 +104,7 @@ export class ArtifactsService extends RequestService {
   public async updateById<Meta>(
     type: string,
     id: string,
-    model: ArtifactModel<Meta>,
+    model: Partial<ArtifactModel<Meta>>,
     { filter, config }: OneQueryMethodsInput<ArtifactModel<Meta>> = {},
   ): AxiosPromise<Artifact<Meta>> {
     return this.patch(`${this.path}/${type}/${id}`, model, {
@@ -118,7 +118,7 @@ export class ArtifactsService extends RequestService {
 
   public async updateOne<Meta>(
     type: string,
-    model: ArtifactModel<Meta>,
+    model: Partial<ArtifactModel<Meta>>,
     filter: OneFilter<ArtifactModel<Meta>>,
     { config }: { config?: AxiosRequestConfig } = {},
   ): AxiosPromise<Artifact<Meta>> {

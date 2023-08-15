@@ -10,5 +10,6 @@ export * from './profile.interface';
 export * from './logistics';
 export * from './stat.interface';
 export * from './workflows';
+export * from './workflow.interface';
 export * from './orders.interface';
 export * from './suggestions.interface';

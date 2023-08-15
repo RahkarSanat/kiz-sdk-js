@@ -77,7 +77,10 @@ export class BaseService<M, I> extends RequestService {
     });
   }
 
-  public async updateBulk(model: M, { filter, config }: CountQueryMethodsInput<M> = {}): AxiosPromise<Count> {
+  public async updateBulk(
+    model: Partial<M>,
+    { filter, config }: CountQueryMethodsInput<M> = {},
+  ): AxiosPromise<Count> {
     return this.patch(this.path, model, {
       params: filter,
       headers: {
@@ -89,7 +92,7 @@ export class BaseService<M, I> extends RequestService {
 
   public async updateById(
     id: string,
-    model: M,
+    model: Partial<M>,
     { filter, config }: OneQueryMethodsInput<M> = {},
   ): AxiosPromise<I> {
     return this.patch(`${this.path}/${id}`, model, {
@@ -102,7 +105,7 @@ export class BaseService<M, I> extends RequestService {
   }
 
   public async updateOne(
-    model: M,
+    model: Partial<M>,
     filter: OneFilter<M>,
     { config }: { config?: AxiosRequestConfig } = {},
   ): AxiosPromise<I> {

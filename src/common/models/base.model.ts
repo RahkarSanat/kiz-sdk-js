@@ -2,6 +2,7 @@ export class BaseModel<T, Meta = Record<string, unknown>> {
   id?: string;
   owner?: string;
   shares?: string[];
+  zones?: string[];
   created_at?: Date;
   created_by?: string;
   updated_at?: Date;
