@@ -1,7 +1,7 @@
 import { Base } from '../base';
 
 export interface To {
-  alias?: string;
+  alias: string;
   phone_number?: string;
   subject?: string;
   user_id?: string;
