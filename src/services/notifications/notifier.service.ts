@@ -1,16 +1,13 @@
 import { AxiosPromise, AxiosRequestConfig } from 'axios';
 import { BaseService } from '../core';
-import { Notifier, NotifierModel } from '../../common';
+import { NotifierModel, NotifyByReason } from '../../common';
 import { ServiceOption } from 'common/infrastructure';
-export class NotifierService extends BaseService<NotifierModel, Notifier> {
+export class NotifierService extends BaseService<NotifierModel, NotifyByReason> {
   constructor(protected readonly path: string, protected readonly options?: ServiceOption) {
     super(path, options);
   }
 
-  async byReason(
-    model: Omit<NotifierModel, 'template_id' | 'recipient'>,
-    config?: AxiosRequestConfig,
-  ): AxiosPromise<Notifier> {
+  async byReason(model: NotifierModel, config?: AxiosRequestConfig): AxiosPromise<NotifyByReason> {
     return this.post(
       { url: `${this.path}/reason`, data: model },
       {
@@ -22,15 +19,5 @@ export class NotifierService extends BaseService<NotifierModel, Notifier> {
     );
   }
 
-  async byCustom(model: NotifierModel, config?: AxiosRequestConfig): AxiosPromise<Notifier> {
-    return this.post(
-      { url: `${this.path}/custom`, data: model },
-      {
-        headers: {
-          Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
-        },
-        ...config,
-      },
-    );
-  }
+  // async byCustom();
 }

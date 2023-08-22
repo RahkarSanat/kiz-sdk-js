@@ -1,48 +1,38 @@
 import { Base } from '../base';
 
-export interface KavenegarEntry {
-  messageid: number;
-
-  message: string;
-
-  status: number;
-
-  statustext: string;
-
-  sender: string;
-
-  receptor: string;
-
-  date: number;
-
-  cost: number;
+export interface SmsResponse {
+  status?: boolean;
+  third_party_message_id?: number;
+  error?: string | undefined;
 }
 
-export interface NotifierStatistics {
-  sms?: {
-    status: Record<string, unknown>; // or any other supported provider response type
-    message: string;
-  };
+export interface SmsDelivery {
+  reports: Record<string, SmsResponse & { user_id?: string }>;
+  sent_message?: string;
+}
+
+export interface NotifierDelivery {
+  sms?: SmsDelivery;
   mail?: {
-    status: Record<string, unknown>;
-    message: string;
+    status: Record<string, unknown>[];
+    sent_message?: string;
   };
   fcm?: {
-    status: Record<string, unknown>;
-    message: string;
+    status: Record<string, unknown>[];
+    sent_message?: string;
   };
   socket?: {
-    status: Record<string, unknown>;
-    message: string;
+    status: Record<string, unknown>[];
+    sent_message?: string;
   };
 }
-
-export interface Notifier<Meta = Record<string, unknown>> extends Base<Meta> {
+export interface NotifyByReason extends Base {
   reason: string;
   triggers: string;
   value_args?: string[];
-  statistic?: NotifierStatistics;
+  metadata?: Record<string, unknown>;
+  delivery?: NotifierDelivery;
 }
 
-export type NotificationNotifierInterface = Notifier;
-export type NotificationNotifierStatisticsInterface = NotifierStatistics;
+export type NotificationNotifierInterface = NotifyByReason;
+export type NotificationNotifierDeliveryInterface = NotifierDelivery;
