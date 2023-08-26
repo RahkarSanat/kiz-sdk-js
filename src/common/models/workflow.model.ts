@@ -1,9 +1,9 @@
 import { WorkflowToken } from '../interfaces';
 import { BaseModel } from './base.model';
 
-export class WorkflowModel extends BaseModel<WorkflowModel> {
-  type!: string;
-  data?: unknown;
+export class WorkflowModel<T = unknown> extends BaseModel<WorkflowModel<T>> {
+  type?: string;
+  data?: T;
   status!: string;
   tokens!: WorkflowToken[];
 }
