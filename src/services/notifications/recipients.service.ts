@@ -1,4 +1,4 @@
-import { ServiceOption } from 'common/infrastructure';
+import { ServiceOption } from '../../common/infrastructure';
 import { Recipient, RecipientModel } from '../../common';
 import { BaseService } from '../core';
 export class RecipientsService extends BaseService<RecipientModel, Recipient> {

@@ -20,3 +20,4 @@ export * from './exception-scope.enum';
  */
 
 export * from './service-option.type';
+export * from './interceptor.interface';

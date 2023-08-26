@@ -1,4 +1,4 @@
-import { ServiceOption } from 'common/infrastructure';
+import { ServiceOption } from '../common/infrastructure';
 import { Grant, GrantModel } from '../common';
 import { BaseService } from './core';
 

@@ -1,4 +1,4 @@
-import { ServiceOption } from 'common/infrastructure';
+import { ServiceOption } from '../common/infrastructure';
 import { Profile, ProfileModel } from '../common';
 import { BaseService } from './core';
 
