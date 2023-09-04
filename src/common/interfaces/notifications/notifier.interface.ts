@@ -6,6 +6,17 @@ export interface SmsResponse {
   error?: string | undefined;
 }
 
+export interface SocketReport {
+  sent: boolean;
+  seen: boolean;
+}
+
+export interface SocketDelivery {
+  sent_message: string;
+  priority_level: string;
+  links?: string[];
+  reports?: Record<string, SocketReport>;
+}
 export interface SmsDelivery {
   reports: Record<string, SmsResponse & { user_id?: string }>;
   sent_message?: string;
@@ -13,15 +24,13 @@ export interface SmsDelivery {
 
 export interface NotifierDelivery {
   sms?: SmsDelivery;
+  socket?: SocketDelivery;
+
   mail?: {
     status: Record<string, unknown>[];
     sent_message?: string;
   };
   fcm?: {
-    status: Record<string, unknown>[];
-    sent_message?: string;
-  };
-  socket?: {
     status: Record<string, unknown>[];
     sent_message?: string;
   };

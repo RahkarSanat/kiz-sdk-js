@@ -1,4 +1,4 @@
-import { SmsFunctionality, SocketLevel } from '../../enums';
+import { SmsProviderFunctionalityEnum, SocketPriorityLevel } from '../../enums';
 import { Base } from '../base';
 
 export interface Options {
@@ -7,6 +7,7 @@ export interface Options {
   body?: string;
   key_args?: string[];
   render?: boolean;
+  retry_with_alternative_provider_after?: number;
   turtle?: number;
 }
 
@@ -18,21 +19,29 @@ export interface MailOptions extends Options {
   elementId?: string; // put parent body in specific html element
 }
 
+/* 
+  set value for `provider_lookup_template_name` only if the `functionality` is `lookup`
+*/
 export interface SmsOptions extends Options {
-  functionality: SmsFunctionality;
+  functionality?: SmsProviderFunctionalityEnum;
   provider_lookup_template_name?: string;
   retry?: boolean;
 }
 
+/* 
+  default value for `priority_level` is `info`
+  default value for `require_acknowledgment` is `true`
+*/
 export interface SocketOptions extends Options {
-  channels: string[];
+  base_topic: string;
   links?: [];
-  level?: SocketLevel;
-  indicator?: string;
+  priority_level?: SocketPriorityLevel;
+  require_acknowledgment?: boolean;
 }
 
 export interface Template<Meta = Record<string, unknown>> extends Base<Meta> {
   name: string;
+  active?: boolean;
   description?: string;
   reason: string;
   sms?: SmsOptions;

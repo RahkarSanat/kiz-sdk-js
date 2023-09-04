@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+- Notification (all modules) type (models, interfaces)
+
 ## 2.6.1 - 2023-08-26
 ### Fixed
 - Addressing Common and Infrastructure folders

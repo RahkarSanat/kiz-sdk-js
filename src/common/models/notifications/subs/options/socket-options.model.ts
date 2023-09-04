@@ -1,9 +1,9 @@
-import { SocketLevel } from '../../../../enums';
+import { SocketPriorityLevel } from '../../../../enums';
 import { Options } from './base-options.model';
 
 export class SocketOptions extends Options {
-  channels!: string[];
+  base_topic!: string;
   links?: [];
-  level?: SocketLevel;
-  indicator?: string;
+  priority_level?: SocketPriorityLevel;
+  require_acknowledgment?: boolean;
 }
