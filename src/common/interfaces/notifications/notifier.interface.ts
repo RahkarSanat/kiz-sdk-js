@@ -42,6 +42,20 @@ export interface NotifyByReason extends Base {
   metadata?: Record<string, unknown>;
   delivery?: NotifierDelivery;
 }
+export interface NotifyByCustom extends Base {
+  reason: string;
+  recipients: CustomSmsRecipients;
+  value_args?: string[];
+  metadata?: Record<string, unknown>;
+  delivery?: NotifierDelivery;
+}
+
+export interface CustomSmsRecipients {
+  alias: string;
+  phone_numbers?: string[];
+  subjects?: string[];
+  user_ids?: string[];
+}
 
 export type NotificationNotifierInterface = NotifyByReason;
 export type NotificationNotifierDeliveryInterface = NotifierDelivery;
