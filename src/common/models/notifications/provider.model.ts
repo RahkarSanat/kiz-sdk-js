@@ -1,9 +1,8 @@
-import { ProviderName } from '../../enums';
 import { BaseModel } from '../base.model';
 import { FcmConfigs, MailConfigs, SmsConfigs, SocketConfigs } from './subs';
 
 export class ProviderModel extends BaseModel<ProviderModel> {
-  name!: ProviderName;
+  name!: string;
   description?: string;
   active?: boolean;
   sms?: SmsConfigs;

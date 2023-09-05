@@ -5,7 +5,6 @@ export * from './scope.enum';
 export * from './geo-json.enum';
 export * from './resource.enum';
 export * from './socket-priority-level.enum';
-export * from './provider-name.enum';
 export * from './sms-provider-functionality.enum';
 export * from './user-type.enum';
 export * from './gender.enum';

@@ -1,4 +1,4 @@
-import { ProviderName, SmsServiceName, SocketServiceName } from '../../enums';
+import { SmsServiceName, SocketServiceName } from '../../enums';
 import { Base } from '../base';
 
 export interface FcmConfigs {
@@ -38,7 +38,7 @@ export interface SocketConfigs {
 }
 
 export interface Provider<Meta = Record<string, unknown>> extends Base<Meta> {
-  name: ProviderName;
+  name: string;
   description?: string;
   active?: boolean;
   sms?: SmsConfigs;
