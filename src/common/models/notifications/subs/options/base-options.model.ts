@@ -6,5 +6,6 @@ export class Options extends NestedBaseModel {
   body?: string;
   key_args?: string[];
   render?: boolean;
+  retry_with_alternative_provider_after?: number;
   turtle?: number;
 }

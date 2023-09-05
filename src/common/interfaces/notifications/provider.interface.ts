@@ -1,4 +1,4 @@
-import { ProviderName } from '../../enums';
+import { SmsServiceName, SocketServiceName } from '../../enums';
 import { Base } from '../base';
 
 export interface FcmConfigs {
@@ -23,17 +23,22 @@ export interface MailConfigs {
 }
 
 export interface SmsConfigs {
+  service_name: SmsServiceName;
   api_url: string;
   api_key: string;
 }
 
-// TODO: update after considering types
+/* 
+ external source configuration (mqtt, socket)
+*/
 export interface SocketConfigs {
-  [key: string]: string;
+  service_name?: SocketServiceName;
+  internal?: boolean;
+  configuration?: any;
 }
 
 export interface Provider<Meta = Record<string, unknown>> extends Base<Meta> {
-  name: ProviderName;
+  name: string;
   description?: string;
   active?: boolean;
   sms?: SmsConfigs;

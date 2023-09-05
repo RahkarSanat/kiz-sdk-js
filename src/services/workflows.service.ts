@@ -1,9 +1,8 @@
-import { ServiceOption } from 'common/infrastructure';
+import { ServiceOption } from '../common/infrastructure';
+import { Workflow, WorkflowModel } from '../common';
 import { BaseService } from './core';
-import { WorkflowModel } from 'common/models/workflow.model';
-import { Workflow } from 'common/interfaces/workflow.interface';
 
-export class WorkflowsService extends BaseService<WorkflowModel, Workflow> {
+export class WorkflowsService<T = unknown> extends BaseService<WorkflowModel<T>, Workflow<T>> {
   constructor(protected readonly path: string, protected readonly options?: ServiceOption) {
     super(path, options);
   }
