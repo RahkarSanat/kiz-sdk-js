@@ -8,9 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 ### Added
 - Notify by Custom Recipients
+
 ### Fixed
 - Zones added to BaseModel
 - Generic Workflow interface to specify Data type
+
+### Changed
+- Notification (all modules) type (models, interfaces)
+
 ## 2.6.1 - 2023-08-26
 ### Fixed
 - Addressing Common and Infrastructure folders
