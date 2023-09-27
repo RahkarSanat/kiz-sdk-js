@@ -213,7 +213,7 @@ export class LocationsService extends RequestService {
     { config }: { config?: AxiosRequestConfig },
   ): AxiosPromise<Location<Meta, Prop>> {
     return this.put(
-      { url: `${this.path}/${type}/restore` },
+      { url: `${this.path}/${type}/restore/one` },
       {
         params: filter,
         headers: {
