@@ -1,5 +1,5 @@
 import { AxiosPromise, AxiosRequestConfig } from 'axios';
-import { AccessTokenObject, AuthTokenReq, AuthTokenRes } from '../common';
+import { AccessTokenObject, AuthTokenReq, AuthTokenRes, Grant, Items } from '../common';
 import { RequestService } from './core';
 import { AXIOS_CLIENT, ServiceOption } from '../common/infrastructure';
 
@@ -29,6 +29,21 @@ export class AuthService extends RequestService {
     return this.get<AccessTokenObject>(`${this.path}/decrypt`, {
       headers: {
         Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+      },
+      ...config,
+    });
+  }
+
+  public async grants(
+    resources: string[],
+    { config }: { config?: AxiosRequestConfig } = {},
+  ): AxiosPromise<Items<Grant>> {
+    return this.get(`${this.path}/grants`, {
+      headers: {
+        Authorization: `Bearer ${(config ?? this.options)?.headers?.common?.Authorization}`,
+      },
+      params: {
+        resources,
       },
       ...config,
     });

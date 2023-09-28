@@ -13,21 +13,30 @@ export enum Resource {
   Session = 'session',
   Workflow = 'workflow',
   Artifact = 'artifact',
-  Chat = 'chat',
+  Stat = 'stat',
+
+  // Chat
+  ChatRoom = 'chat_room',
+  ChatMessage = 'chat_message',
+
+  // OTP
+  AuthOtp = 'auth_otp',
 
   // Logistics
-  LogisticsLocation = 'logistics_location',
-  LogisticsTransportsVehicle = 'logistics_transports_vehicle',
-  LogisticsTransportsDriver = 'logistics_transports_drivers',
+  LogisticLocation = 'logistic_location',
+  LogisticTransportVehicle = 'logistic_transport_vehicle',
+  LogisticTransportDriver = 'logistic_transport_driver',
 
   // Financial
   Wallet = 'wallet',
-  FinancialTransactions = 'financial_transactions',
+  FinancialTransaction = 'financial_transaction',
 
   // Notifications
-  NotificationsNotifier = 'notifications_notifier',
-  NotificationsProvider = 'notifications_provider',
-  NotificationsTemplate = 'notifications_template',
+  NotificationNotifier = 'notification_notifier',
+  NotificationProvider = 'notification_provider',
+  NotificationTemplate = 'notification_template',
+  NotificationRecipient = 'notification_recipient',
+  NotificationRole = 'notification_role',
 }
 
 // TODO: remove `s` at the end
